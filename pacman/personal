@@ -1,0 +1,17 @@
+i7z
+acpi
+alsa-utils
+bluez
+bluez-utils
+ntfs-3g
+chrony
+connman
+watchdog
+efibootmgr
+intel-ucode
+
+smartmontools
+gptfdisk
+parted
+rtorrent
+task

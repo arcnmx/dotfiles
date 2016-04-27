@@ -1,0 +1,74 @@
+set complete=lt
+set maxitems=20
+set messagetimeout=2000
+set defsearch=google
+set hc=jfkdlsawoeicmghqpz
+set focuscontent
+set titlestring="Firefox"
+set animations=true
+set toolbars=none
+set showstatuslinks=1
+
+" scroll three times as fast: i operate at warp speed
+nnoremap j 3j
+nnoremap k 3k
+nnoremap h 3h
+nnoremap l 3l
+
+" make some shortcuts more like Vimium
+nnoremap J gt
+nnoremap K gT
+nnoremap x :tabclose<cr>
+
+" stay in insert mode
+nnoremap I <S-Esc>
+
+" hint styles
+hi Hint font-family: sans-serif; font-size: 10px; font-weight: bold; text-transform: uppercase; color: black; background: #f0f0f0; border: 1px solid #ddd; padding: .25em .5em; margin-top: -.25em; margin-left: -.5em; border-radius: 5px; text-shadow: 0 1px 0 #fff;
+hi HintElem nothing: yes;
+
+" other styles
+hi Normal font-family: "Source Code Pro", Inconsolata, Consolas, Monaco, monospace; font-size: 10px; background: white; color: black;
+hi CmdLine>* font-family: "Source Code Pro", Inconsolata, Consolas, Monaco, monospace; font-size: 10px;
+
+set editor="urxvt -e vim"
+
+" Firefox
+" -------
+
+set! browser.startup.homepage=about:blank
+set! browser.search.selectedEngine=Google
+set! browser.search.defaultenginename=Google
+set! browser.search.suggest.enabled=false
+set! browser.search.update=true
+set! browser.urlbar.trimURLs=false
+set! browser.newtab.url=about:blank
+set! privacy.donottrackheader.enabled=true
+set! browser.privatebrowsing.autostart=false
+set! browser.privatebrowsing.dont_prompt_on_enter=true
+set! browser.shell.checkDefaultBrowser=false
+set! security.dialog_enable_delay=0
+set! security.csp.enable=true
+set! browser.rights.3.shown=true
+set! layout.spellcheckDefault=2
+set! view_source.syntax_highlight=true
+set! view_source.wrap_long_lines=true
+
+" enable pipelining
+set! network.http.pipelining=true
+set! network.http.pipelining.maxrequests=64
+set! network.http.max-connections=64
+set! network.http.max-connections-per-server=64
+
+" no warnings
+set! browser.tabs.warnOnClose=false
+set! browser.tabs.warnOnCloseOtherTabs=false
+set! browser.tabs.warnOnOpen=false
+set! general.warnOnAboutConfig=false
+
+" open tabs to the right of the current
+set! browser.tabs.insertRelatedAfterCurrent=true
+set! browser.tabs.insertRelatedAfterCurrent.override=true
+
+" clear last download location when we run this file
+set! browser.download.lastDir=""

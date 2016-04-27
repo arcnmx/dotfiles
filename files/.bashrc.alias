@@ -1,0 +1,38 @@
+alias sudo='sudo '
+
+if [ -n "$ARC_OSX" ]; then
+	alias ls='ls -G'
+else
+	alias ls='ls --color=auto'
+fi
+alias la='ls -A'
+alias ll='ls -lh'
+alias lla='ls -lhA'
+
+alias cp='cp --reflink=auto --sparse=auto'
+
+alias y='trizen'
+alias get='y -S'
+alias up='y -Syu'
+
+alias chromium='chromium --process-per-site'
+
+function dict() {
+	curl "dict://dict.org/$1:$2"
+}
+
+if [ -n "$ARC_OSX" ]; then
+	function _arc_brew() {
+		if [ -z "${ARC_BREW-}" ]; then
+			ARC_BREW=`which brew`
+			ARC_BREW_UID=$(stat -f "%u" "$ARC_BREW")
+		fi
+
+		if [ "$ARC_BREW_UID" -ne "$UID" ]; then
+			sudo -Hu "#$ARC_BREW_UID" "$@"
+		else
+			"$@"
+		fi
+	}
+	alias brew='_arc_brew'
+fi

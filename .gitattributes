@@ -1,0 +1,9 @@
+/files/.bin/arcbackup filter=git-crypt diff=git-crypt
+/files/.bin/git-config-email filter=git-crypt diff=git-crypt
+/files/.bin/konawall filter=git-crypt diff=git-crypt
+/files/.bin/vpsdump filter=git-crypt diff=git-crypt
+/files/.cargo/config filter=git-crypt diff=git-crypt
+/files/.gitconfig.url filter=git-crypt diff=git-crypt
+/files/.ssh/config filter=git-crypt diff=git-crypt
+/bin/keygen.sh filter=git-crypt diff=git-crypt
+/data/github-users filter=git-crypt diff=git-crypt

@@ -1,0 +1,4 @@
+[Service]
+Type=simple
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/env ${HOME}/.bin/konawall

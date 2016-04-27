@@ -1,0 +1,29 @@
+XF86AudioLowerVolume
+	notify-send -u low -t 1000 "Volume Decreased" \
+	"`amixer set Master playback 5- | grep -Po '\d+%'`"
+
+XF86AudioRaiseVolume
+	notify-send -u low -t 1000 "Volume Increased" \
+	"`amixer set Master playback 5+ | grep -Po '\d+%'`"
+
+XF86AudioMute
+	notify-send -u low -t 2000 "Mute Toggled" \
+	"`amixer set Master playback toggle | grep -q off && echo Muted || echo Unmuted`"
+
+XF86MonBrightnessUp
+	xbacklight -inc 10
+
+XF86MonBrightnessDown
+	xbacklight -dec 10
+
+XF86Search
+	killall syndaemon; \
+	synclient TouchpadOff=1
+
+shift + XF86Search
+	killall syndaemon; \
+	synclient TouchpadOff=0; \
+	syndaemon -K -d -m 100 -i 0.1
+
+super + @p
+	sleep 0.2; xset dpms force off

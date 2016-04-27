@@ -1,0 +1,17 @@
+[Unit]
+Before=sleep.target
+StopWhenUnneeded=yes
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+
+ExecStart=/usr/bin/systemctl stop bluetooth
+ExecStart=/usr/bin/connmanctl disable wifi
+
+ExecStop=/usr/bin/systemctl start bluetooth
+ExecStop=/usr/bin/connmanctl enable wifi
+ExecStop=/usr/bin/connmanctl scan wifi
+
+[Install]
+WantedBy=sleep.target

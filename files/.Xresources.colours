@@ -1,0 +1,36 @@
+URxvt.intensityStyles: true
+URxvt.depth: 32
+URxvt*background: rgba:0000/0000/0000/bbbb
+URxvt*foreground: rgb:ff/ff/ff
+
+! Black
+URxvt*color0:     rgb:00/00/00
+URxvt*color8:     rgb:c3/c3/c3
+
+! Red
+URxvt*color1:     rgb:ff/90/60
+URxvt*color9:     rgb:ff/00/00
+
+! Green
+URxvt*color2:     rgb:40/8F/40
+URxvt*color10:    rgb:58/cf/58
+
+! Brown
+URxvt*color3:     rgb:ff/80/30
+URxvt*color11:    rgb:ff/cc/38
+
+! Blue
+URxvt*color4:     rgb:60/a0/ff
+URxvt*color12:    rgb:80/80/ff
+
+! Magenta
+URxvt*color5:     rgb:ff/20/ff
+URxvt*color13:    rgb:ff/80/ff
+
+! Cyan
+URxvt*color6:     rgb:20/ff/ff
+URxvt*color14:    rgb:50/ff/cc
+
+! White
+URxvt*color7:     rgb:ff/ff/ff
+URxvt*color15:    rgb:aa/aa/aa

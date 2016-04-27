@@ -1,0 +1,7 @@
+#!/bin/bash
+
+for key in "$HOME/.ssh/id_rsa"*; do
+	if [[ "$key" != *.pub ]]; then
+		ssh-add "$key"
+	fi
+done
