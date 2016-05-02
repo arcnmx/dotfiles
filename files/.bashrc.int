@@ -5,4 +5,8 @@ PS1='\[\e[0;31m\]\u\[\e[1;39m\]@\[\e[0;31m\]\h \[\e[1;34m\]\w\n\[\e[1;37m\]:; \[
 
 shopt -s checkwinsize
 
-source $ARC_SYSTEM_USR/share/bash-completion/bash_completion
+if [ -e $ARC_SYSTEM_USR/share/bash-completion/bash_completion ]; then
+	. $ARC_SYSTEM_USR/share/bash-completion/bash_completion
+elif [ -f $ARC_SYSTEM_USR/etc/bash_completion ]; then
+	. $ARC_SYSTEM_USR/etc/bash_completion
+fi
