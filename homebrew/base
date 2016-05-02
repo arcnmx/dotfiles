@@ -14,3 +14,4 @@ git
 git-crypt
 
 openssl
+homebrew/dupes/openssh
