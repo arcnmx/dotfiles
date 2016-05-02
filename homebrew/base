@@ -2,6 +2,7 @@ zsh
 zsh-completions
 bash-completion
 
+coreutils
 unrar
 netcat
 wget
