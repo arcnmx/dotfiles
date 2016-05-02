@@ -1,8 +1,5 @@
 [[ $- != *i* ]] && return
 
-if [[ -z "${ARC_ENV-}" ]]; then
-	. ~/.bashrc.env
-fi
-
+. ~/.bashrc.env
 . ~/.bashrc.int
 . ~/.bashrc.alias

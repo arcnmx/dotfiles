@@ -2,10 +2,7 @@ PROMPT_EOL_MARK=
 KEYTIMEOUT=1
 REPORTTIME=30
 
-if [[ -z "${ARC_ENV-}" ]]; then
-	. ~/.bashrc.env
-fi
-
+. ~/.bashrc.env
 . ~/.zshenv.omz
 . ~/.bashrc.alias
 
