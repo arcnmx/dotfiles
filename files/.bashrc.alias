@@ -24,14 +24,14 @@ function dict() {
 if [ -n "$ARC_OSX" ]; then
 	function _arc_brew() {
 		if [ -z "${ARC_BREW-}" ]; then
-			ARC_BREW=`which brew`
+			ARC_BREW=$(env which brew)
 			ARC_BREW_UID=$(stat -f "%u" "$ARC_BREW")
 		fi
 
 		if [ "$ARC_BREW_UID" -ne "$UID" ]; then
-			sudo -Hu "#$ARC_BREW_UID" "$@"
+			sudo -Hu "#$ARC_BREW_UID" "$ARC_BREW" "$@"
 		else
-			"$@"
+			"$ARC_BREW" "$@"
 		fi
 	}
 	alias brew='_arc_brew'
