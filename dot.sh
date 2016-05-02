@@ -148,7 +148,13 @@ case $COMMAND in
 		fi
 
 		if [[ "$SHELL" != *zsh ]] && which zsh > /dev/null 2>&1; then
-			chsh -s "`which zsh`" "$USER"
+			zsh_shells() {
+				(
+					cat /etc/shells | sort | uniq -u
+					which -a zsh | sort | uniq -u
+				) | sort | uniq -d
+			}
+			chsh -s "$(zsh_shells | head -n 1)" "$USER"
 		fi
 
 		"$INSTALL" keygen
