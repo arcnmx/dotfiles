@@ -16,3 +16,4 @@ git-crypt
 
 openssl
 homebrew/dupes/openssh
+arcnmx/homebrew-formulae/rxvt-unicode-terminfo
