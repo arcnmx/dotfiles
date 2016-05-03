@@ -3,7 +3,7 @@ Description=Screen lock
 Before=sleep.target
 
 [Service]
-Type=simple
+Type=forking
 User=%I
 ExecStart=/usr/bin/physlock -dms
 
