@@ -1,0 +1,11 @@
+[Unit]
+Description=Screen lock
+Before=sleep.target
+
+[Service]
+Type=simple
+User=%I
+ExecStart=/usr/bin/physlock -dms
+
+[Install]
+WantedBy=sleep.target
