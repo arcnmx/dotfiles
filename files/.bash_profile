@@ -1,3 +1,3 @@
 . ~/.bashrc.env
-. ~/.bashrc
 . ~/.bashrc.login
+. ~/.bashrc
