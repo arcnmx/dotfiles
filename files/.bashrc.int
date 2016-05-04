@@ -1,26 +1,12 @@
-if [[ "$OSTYPE" == darwin* ]]; then
-	ARC_OSX=y
-else
-	ARC_OSX=
-fi
+HISTIGNORE='[bf]g:exit: *'
+HISTCONTROL=ignoredups
 
-if [ -n "$ARC_OSX" ]; then
-	ARC_SYSTEM_USR="$(brew --prefix || echo /usr/local)"
-else
-	ARC_SYSTEM_USR=/usr
-fi
+PS1='\[\e[0;31m\]\u\[\e[1;39m\]@\[\e[0;31m\]\h \[\e[1;34m\]\w\n\[\e[1;37m\]:; \[\e[0m\]'
 
-if [ -n "${BASH_VERSION-}" ]; then
-	HISTIGNORE='[bf]g:exit: *'
-	HISTCONTROL=ignoredups
+shopt -s checkwinsize
 
-	PS1='\[\e[0;31m\]\u\[\e[1;39m\]@\[\e[0;31m\]\h \[\e[1;34m\]\w\n\[\e[1;37m\]:; \[\e[0m\]'
-
-	shopt -s checkwinsize
-
-	if [ -e "$ARC_SYSTEM_USR/share/bash-completion/bash_completion" ]; then
-		. "$ARC_SYSTEM_USR/share/bash-completion/bash_completion"
-	elif [ -f "$ARC_SYSTEM_USR/etc/bash_completion" ]; then
-		. "$ARC_SYSTEM_USR/etc/bash_completion"
-	fi
+if [ -e "$ARC_SYSTEM_USR/share/bash-completion/bash_completion" ]; then
+	. "$ARC_SYSTEM_USR/share/bash-completion/bash_completion"
+elif [ -f "$ARC_SYSTEM_USR/etc/bash_completion" ]; then
+	. "$ARC_SYSTEM_USR/etc/bash_completion"
 fi

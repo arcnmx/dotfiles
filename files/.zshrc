@@ -8,3 +8,7 @@ REPORTTIME=30
 setopt rmstarsilent
 setopt nosharehistory
 setopt nonomatch
+
+if [[ -o login ]]; then
+	. ~/.bashrc.login
+fi
