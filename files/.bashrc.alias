@@ -36,3 +36,8 @@ if [ -n "$ARC_OSX" ]; then
 	}
 	alias brew='_arc_brew'
 fi
+
+# Tabs should be 4 spaces wide
+if [[ "$TERM" = rxvt-unicode* ]] && which setterm > /dev/null 2>&1; then
+	TERM=linux setterm -regtabs 4
+fi
