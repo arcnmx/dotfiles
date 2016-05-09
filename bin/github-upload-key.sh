@@ -11,9 +11,7 @@ USERNAME="$2"
 
 if [ "$#" -lt 3 ]; then
 	echo -n "Enter github password for $USERNAME: " >&2
-	stty -echo
-	read -r PASSWORD
-	stty echo
+	read -rs PASSWORD
 	echo >&2
 else
 	PASSWORD="$3"
