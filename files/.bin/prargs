@@ -1,0 +1,3 @@
+#! /bin/bash
+
+printf '"%b"\n' "$0" "$@" | nl -v0 -s": "
