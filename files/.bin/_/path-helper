@@ -1,0 +1,36 @@
+#!/bin/bash
+
+PATHS=()
+
+addpath() {
+	for dir in "$@"; do
+		if [ -e "$dir" ]; then
+			PATHS+=("$dir")
+		fi
+	done
+}
+
+array_contains() {
+	local NEEDLE="$1"
+	shift
+
+	for value in "$@"; do
+		if [ "$value" = "$NEEDLE" ]; then
+			return 0
+		fi
+	done
+
+	return 1
+}
+
+for dir in "$@"; do
+	addpath "$dir"
+done
+
+while read -rd: dir; do
+	if ! array_contains "$dir" "${PATHS[@]}"; then
+		addpath "$dir"
+	fi
+done <<< "$PATH"
+
+printf %s: "${PATHS[@]}"
