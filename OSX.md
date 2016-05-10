@@ -5,6 +5,7 @@ Things to do on a new OS X machine.
 ## Applications
 
 - [Firefox](https://www.mozilla.org/en-US/firefox)
+- [XVim](https://github.com/XVimProject/XVim.git)
 - App Store
     - Xcode
 
@@ -41,6 +42,7 @@ Things to do on a new OS X machine.
     - Terminal
     - System Preferences
     - Firefox
+    - Xcode
     - Downloads
     - Trash
 - Remove everything else
