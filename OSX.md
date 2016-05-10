@@ -4,7 +4,7 @@ Things to do on a new OS X machine.
 
 ## Applications
 
-- [Firefox](https://www.mozilla.org/en-US/firefox/new)
+- [Firefox](https://www.mozilla.org/en-US/firefox)
 - App Store
     - Xcode
 
