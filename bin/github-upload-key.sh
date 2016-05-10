@@ -17,7 +17,7 @@ else
 	PASSWORD="$3"
 fi
 
-KEYDATA=$(cat ~/.ssh/id_rsa.pub)
+KEYDATA=$(cat "$KEYFILE")
 KEYCOMMENT=$(echo "$KEYDATA" | cut -d ' ' -f 3-)
 
 POST_DATA=$(printf '{ "title": "%s", "key": "%s" }' "$KEYCOMMENT" "$KEYDATA")

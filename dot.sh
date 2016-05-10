@@ -168,20 +168,6 @@ case $COMMAND in
 
 		"$INSTALL" keygen
 
-		if [ -z "$(shopt -s nullglob; echo "$HOME/.ssh/id_rsa_github_keylist_"*.pub)" ]; then
-			for user in $(cat "$ROOT/data/github-users"); do
-				rm -f "$HOME/.ssh/id_rsa_github_keylist_$user.*.pub"
-				COUNTER=0
-				KEYS="$("$ROOT/bin/github-get-keys.sh" "$user" || true)"
-				if [ -n "$KEYS" ]; then
-					echo "$KEYS" | while read line; do
-						COUNTER=$((COUNTER+1))
-						KEYFILE="$HOME/.ssh/id_rsa_github_keylist_$user.$COUNTER.pub"
-						echo "$line" > "$KEYFILE"
-					done
-				fi
-			done
-		fi
 		;;
 	update-system)
 		if [ -e "$PACKAGES_FILE" ]; then
@@ -242,14 +228,43 @@ case $COMMAND in
 		HOSTNAME=`hostname`
 
 		if [ ! -e "$HOME/.ssh/id_rsa" ]; then
+			echo "Generating id_rsa" >&2
 			ssh-keygen -t rsa -b 4096 -f "$HOME/.ssh/id_rsa" -C "$USER@$HOSTNAME"
 		fi
 
-		for user in $(cat "$ROOT/data/github-users"); do
-			if [ ! -e "$HOME/.ssh/id_rsa_github_$user" ]; then
-				ssh-keygen -t rsa -b 4096 -N "" -f "$HOME/.ssh/id_rsa_github_$user" -C "$USER@$HOSTNAME $user@github.com"
-			fi
-		done
+		IS_PERSONAL=
+		if [ -e "$PACKAGES_FILE" ] && grep -q personal "$PACKAGES_FILE"; then
+			IS_PERSONAL=y
+		fi
+
+		if [ -n "$IS_PERSONAL" ]; then
+			for user in $(cat "$ROOT/data/github-users"); do
+				if [ ! -e "$HOME/.ssh/id_rsa_github_$user" ]; then
+					echo "Generating github key for $user@github.com" >&2
+					ssh-keygen -t rsa -b 4096 -f "$HOME/.ssh/id_rsa_github_$user" -C "$USER@$HOSTNAME $user@github.com"
+					if ! "$ROOT/bin/github-upload-key.sh" "$HOME/.ssh/id_rsa_github_$user.pub" "$user"; then
+						rm -f "$HOME/.ssh/id_rsa_github_$user"*
+						exit 1
+					fi
+				fi
+			done
+		else
+			for user in $(cat "$ROOT/data/github-users"); do
+				if [ -z "$(shopt -s nullglob; echo "$HOME/.ssh/id_rsa_github_keylist_$user"*.pub)" ]; then
+					echo "Downloading github public keys for $user@github.com" >&2
+					rm -f "$HOME/.ssh/id_rsa_github_keylist_$user.*.pub"
+					COUNTER=0
+					KEYS="$("$ROOT/bin/github-get-keys.sh" "$user" || true)"
+					if [ -n "$KEYS" ]; then
+						echo "$KEYS" | while read line; do
+							COUNTER=$((COUNTER+1))
+							KEYFILE="$HOME/.ssh/id_rsa_github_keylist_$user.$COUNTER.pub"
+							echo "$line" > "$KEYFILE"
+						done
+					fi
+				fi
+			done
+		fi
 		;;
 	newuser)
 		if [ $# -lt 1 ]; then

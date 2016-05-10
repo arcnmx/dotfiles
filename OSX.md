@@ -12,6 +12,9 @@ Things to do on a new OS X machine.
 
 ### System Preferences
 
+- Sharing
+    - Computer Name
+    - Remote Login
 - Security & Privacy
     - Anywhere
     - Disable automatic login
