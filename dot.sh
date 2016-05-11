@@ -19,6 +19,7 @@ fi
 
 CONFIG_ROOT=/opt/arc
 PACKAGES_FILE="$CONFIG_ROOT/etc/arc/packages"
+HOSTNAME="$(hostname -s)"
 
 stat_uid() {
 	local FNAME="$1"
@@ -177,8 +178,6 @@ case $COMMAND in
 			exit 1
 		fi
 
-		HOSTNAME=`hostname`
-
 		if [ -n "$IS_OSX" ]; then
 			(
 				cd "$ROOT/homebrew"
@@ -225,8 +224,6 @@ case $COMMAND in
 		fi
 		;;
 	keygen)
-		HOSTNAME=`hostname`
-
 		if [ ! -e "$HOME/.ssh/id_rsa" ]; then
 			echo "Generating id_rsa" >&2
 			ssh-keygen -t rsa -b 4096 -f "$HOME/.ssh/id_rsa" -C "$USER@$HOSTNAME"
@@ -273,8 +270,6 @@ case $COMMAND in
 		fi
 		USERNAME="$1"
 		shift
-
-		HOSTNAME=`hostname`
 
 		useradd -mg users -G "$*" -s /bin/zsh "$USERNAME"
 		NEW_HOME=`eval echo ~$USERNAME`
