@@ -46,6 +46,10 @@ Things to do on a new OS X machine.
 - Sidebar
     - Indent Using
 
+### Finder
+
+- Add `$HOME` to Favorites
+
 ### Dock
 
 - Keep in Dock
