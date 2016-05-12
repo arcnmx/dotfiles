@@ -35,6 +35,17 @@ Things to do on a new OS X machine.
 - Terminal -> Preferences -> Profiles
     - [Solarized Dark](https://github.com/tomislav/osx-terminal.app-colors-solarized/archive/master.zip): Default
 
+### Xcode
+
+- Preferences -> Text Editing
+    - Line numbers
+    - Automatically insert closing braces
+    - Automatically balance brackets in Objective-C method calls
+    - Automatically trim trailing whitespace
+        - Including whitespace-only lines
+- Sidebar
+    - Indent Using
+
 ### Dock
 
 - Keep in Dock
