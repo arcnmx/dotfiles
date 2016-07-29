@@ -278,7 +278,7 @@ case $COMMAND in
 			cd "$ROOT"
 			REMOTE_URL="$(git remote get-url "$(git remote)")"
 			sudo -Hu "$USERNAME" git clone -q . "$INSTALL_ROOT"
-			sudo -Hu "$USERNAME" cp ./.crypt/key "$INSTALL_ROOT/.crypt/"
+			cp ./.crypt/key "$INSTALL_ROOT/.crypt/"
 			chown "$USERNAME":users "$INSTALL_ROOT/.crypt/key"
 			cd "$INSTALL_ROOT"
 			sudo -Hu "$USERNAME" git remote set-url origin "$REMOTE_URL"
@@ -294,8 +294,8 @@ case $COMMAND in
 			)
 		fi
 
-		sudo -Hu "$USERNAME" "$INSTALL_ROOT/install.sh" crypt-unlock
-		sudo -Hu "$USERNAME" "$INSTALL_ROOT/install.sh" update
+		sudo -Hu "$USERNAME" "$INSTALL_ROOT/dot.sh" crypt-unlock
+		sudo -Hu "$USERNAME" "$INSTALL_ROOT/dot.sh" update
 		;;
 	setup)
 		if [ $# -lt 1 ]; then
@@ -342,6 +342,7 @@ case $COMMAND in
 			export PATH="$GIT_CRYPT_DIR:$PATH"
 		fi
 
+		cd "$ROOT"
 		`which git-crypt` unlock "$ROOT/.crypt/key"
 		;;
 	*)
