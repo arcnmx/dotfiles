@@ -1,8 +1,19 @@
-#!/bin/bash
+#!/bin/sh
 set -eu
 
-ROOT="$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)"
-INSTALL="$ROOT/$(basename "${BASH_SOURCE[0]}")"
+if [ -n "${BASH-}" ]; then
+	SELF="${BASH_SOURCE[0]}"
+else
+	if [ -x "$0" ]; then
+		SELF="$0"
+	else
+		echo "Couldn't find script path, try an absolute path" >&2
+		exit 1
+	fi
+fi
+
+ROOT="$(cd $(dirname "$SELF") && pwd)"
+INSTALL="$ROOT/$(basename "$SELF")"
 
 if [ $# -lt 1 ]; then
 	echo "Usage: $0 COMMAND" >&2
