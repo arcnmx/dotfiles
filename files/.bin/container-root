@@ -1,0 +1,81 @@
+#!/bin/bash
+set -eu
+
+# TODO:
+# - option for readonly vs write home
+# - option for non-ephemeral readonly root
+
+usage() {
+	echo "Usage: $0 [OPTIONS...] [EXEC_ARGS...]"
+	echo " [-h]: show this help"
+	echo " [-b]: boot init"
+	echo " [-r]: readonly root"
+	echo " [-H]: writable home"
+	echo
+	echo "Launches a login shell if no arguments are passed"
+}
+
+main() {
+	EXEC=(systemd-nspawn -D / --register=false)
+
+	while getopts ":hbrH" opt; do
+		case $opt in
+			h) # --help
+				usage
+				return 0
+				;;
+			b)
+				OPT_BOOT_INIT=y
+				;;
+			r)
+				OPT_READONLY_ROOT=y
+				;;
+			H)
+				OPT_WRITE_HOME=y
+				;;
+			:)
+				echo "Expected argument for option: -$OPTARG" >&2
+				usage >&2
+				return 1
+				;;
+			\?)
+				echo "Invalid option: -$OPTARG" >&2
+				usage >&2
+				return 1
+				;;
+		esac
+	done
+	shift $((OPTIND-1))
+
+	if [ -n "${OPT_READONLY_ROOT-}" ]; then
+		EXEC+=(--read-only)
+	else
+		EXEC+=(-x)
+	fi
+
+	if [ -n "${OPT_WRITE_HOME-}" ]; then
+		EXEC+=(--bind=/home:/home)
+	else
+		EXEC+=(--bind-ro=/home:/home)
+	fi
+
+	if [ -n "${OPT_BOOT_INIT-}" ]; then
+		EXEC+=(-b)
+	else
+		EXEC+=(-a -u "$USER")
+	fi
+
+	if [ $# -gt 0 ]; then
+		EXEC+=(-- "$@")
+	else
+		EXEC+=(-- "$SHELL" -li)
+	fi
+
+	if [ "$UID" = 0 ]; then
+		"${EXEC[@]}"
+	else
+		sudo "${EXEC[@]}"
+	fi
+}
+
+main "$@"
