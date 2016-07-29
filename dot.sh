@@ -123,6 +123,10 @@ case $COMMAND in
 		done
 		;;
 	update)
+		if ! [ -e "$HOME/.dotfiles" ]; then
+			ln -s "$ROOT" "$HOME/.dotfiles"
+		fi
+
 		if which zsh > /dev/null 2>&1 && [ ! -d "/usr/share/oh-my-zsh" ]; then
 			if [ -d "$HOME/.oh-my-zsh/git/.git" ]; then
 				(cd "$HOME/.oh-my-zsh/git" && git pull -q)
