@@ -123,7 +123,7 @@ case $COMMAND in
 		done
 		;;
 	update)
-		if [ ! -d "/usr/share/oh-my-zsh" ]; then
+		if which zsh > /dev/null 2>&1 && [ ! -d "/usr/share/oh-my-zsh" ]; then
 			if [ -d "$HOME/.oh-my-zsh/git/.git" ]; then
 				(cd "$HOME/.oh-my-zsh/git" && git pull -q)
 			else
@@ -131,7 +131,7 @@ case $COMMAND in
 			fi
 		fi
 
-		if [ ! -d "/usr/share/vundle" ]; then
+		if which vim > /dev/null 2>&1 && [ ! -d "/usr/share/vundle" ]; then
 			if [ -d "$HOME/.vim/bundle/Vundle.vim/.git" ]; then
 				(cd "$HOME/.vim/bundle/Vundle.vim" && git pull -q)
 			else
