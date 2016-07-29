@@ -224,17 +224,18 @@ case $COMMAND in
 		fi
 		;;
 	keygen)
-		if [ ! -e "$HOME/.ssh/id_rsa" ]; then
-			echo "Generating id_rsa" >&2
-			ssh-keygen -t rsa -b 4096 -f "$HOME/.ssh/id_rsa" -C "$USER@$HOSTNAME"
+		if [ "$(id -u)" -ne 0 ]; then
+			if [ ! -e "$HOME/.ssh/id_rsa" ]; then
+				echo "Generating id_rsa" >&2
+				ssh-keygen -t rsa -b 4096 -f "$HOME/.ssh/id_rsa" -C "$USER@$HOSTNAME"
+			fi
+
+			if [ -e "$PACKAGES_FILE" ] && grep -q personal "$PACKAGES_FILE"; then
+				IS_PERSONAL=y
+			fi
 		fi
 
-		IS_PERSONAL=
-		if [ -e "$PACKAGES_FILE" ] && grep -q personal "$PACKAGES_FILE"; then
-			IS_PERSONAL=y
-		fi
-
-		if [ -n "$IS_PERSONAL" ]; then
+		if [ -n "${IS_PERSONAL-}" ]; then
 			for user in $(cat "$ROOT/data/github-users"); do
 				if [ ! -e "$HOME/.ssh/id_rsa_github_$user" ]; then
 					echo "Generating github key for $user@github.com" >&2
