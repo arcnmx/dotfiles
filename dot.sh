@@ -157,7 +157,7 @@ case $COMMAND in
 			REACHABLE=y
 		fi
 
-		find / -xdev -lname "$ROOT/root/*" -delete
+		find / -xdev -lname "$ROOT/root/*" -delete 2>/dev/null || true
 
 		for dir in "$@"; do
 			dir="$ROOT/root/$dir"
@@ -194,7 +194,7 @@ case $COMMAND in
 		fi
 
 		if [ "$(stat_uid "$ROOT")" -eq "$(id -u)" ]; then
-			find "$HOME" -xdev -lname "$ROOT/files/*" -delete
+			find "$HOME" -xdev -lname "$ROOT/files/*" -delete 2>/dev/null || true
 			for dir in $(packages_ignore); do
 				dir="$ROOT/files/$dir"
 				if [ -d "$dir" ]; then
