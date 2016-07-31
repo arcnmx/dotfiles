@@ -12,8 +12,17 @@ alias lla='ls -lhA'
 alias cp='cp --reflink=auto --sparse=auto'
 
 alias y='trizen'
-alias get='y -S'
-alias up='y -Syu'
+
+if [ -n "$ARC_OSX" ]; then
+	up() {
+		brew update &&
+			brew upgrade
+	}
+	alias get='brew install'
+else
+	alias get='y -S'
+	alias up='y -Syu'
+fi
 
 alias chromium='chromium --process-per-site'
 
