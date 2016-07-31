@@ -1,1 +1,1 @@
-../physlock@.service
+/etc/systemd/system/physlock@.service

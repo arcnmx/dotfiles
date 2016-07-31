@@ -1,1 +1,1 @@
-../net-suspend.service
+/etc/systemd/system/net-suspend.service
