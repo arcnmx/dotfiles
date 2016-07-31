@@ -1,0 +1,25 @@
+#!/bin/bash
+set -eu
+
+HOST="root@$1"
+BACKUP="/mnt/backup/backup/`hostname`"
+FILES="/etc /var/lib/pacman/local"
+
+CONF="/etc/arcbackup.conf"
+DATE=`date "+%Y-%m-%d-%H%M%S"`
+
+if [ -s "$CONF" ]; then
+	FILES="$FILES `cat "$CONF"`"
+fi
+
+ssh $HOST <<EOF
+mount /mnt/backup
+mkdir -p "$BACKUP"
+EOF
+
+sudo rsync -Raz --link-dest="$BACKUP/latest" $FILES $HOST:"$BACKUP/$DATE"
+
+ssh $HOST <<EOF
+ln -sf "$BACKUP/$DATE" "$BACKUP/latest"
+umount /mnt/backup
+EOF

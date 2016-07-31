@@ -1,0 +1,17 @@
+#!/bin/bash
+set -eu
+
+if [ -z "${KONATAGS-}" ]; then
+	KONATAGS="rating:safe+score:>=90"
+
+	if [ "`hostname -s`" = "satorin" ]; then
+		KONATAGS="$KONATAGS+nobody"
+	fi
+fi
+TAGS="$KONATAGS+order:random+width:>=1600"
+
+screens=`xrandr -q | grep ' connected' | wc -l`
+xml=`curl -fSsLG -d "limit=$screens" -d "tags=$TAGS" http://konachan.com/post.xml 2> /dev/null`
+url=`echo $xml | grep -o 'file_url="[^"]*"' | grep -o 'http://[^"]*'`
+timeout 30 feh --no-fehbg --bg-fill $url
+xsetroot -cursor_name left_ptr

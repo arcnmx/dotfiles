@@ -74,32 +74,68 @@ unlink_files() {
 	)
 }
 
+package_names() {
+	for package in "$@"; do
+		case $package in
+			remote)
+				echo base
+				;;
+			personal)
+				echo base personal
+				;;
+			desktop)
+				echo base personal gui
+				;;
+			laptop)
+				echo base personal gui laptop
+				;;
+			*)
+				echo $package
+				;;
+		esac
+	done
+}
+
+packages_ignore() {
+	if [ -e "$PACKAGES_FILE" ]; then
+		cat "$PACKAGES_FILE"
+	else
+		echo base
+	fi
+
+	if [ -n "$IS_OSX" ]; then
+		echo osx
+	fi
+
+	echo "$USER"
+
+	echo "$HOSTNAME"
+}
+
 packages() {
-	local TYPE="$1"
-	case $TYPE in
-		remote)
-			echo base
-			;;
-		personal)
-			echo base personal
-			;;
-		desktop)
-			echo base personal gui
-			;;
-		laptop)
-			echo base personal gui laptop
-			;;
-		*)
-			echo "Unknown type" >&2
-			exit 1
-	esac
+	if ! [ -e "$PACKAGES_FILE" ]; then
+		echo "You must run setup first" >&2
+		return 1
+	fi
+
+	packages_ignore "$@"
+}
+
+package_contents() {
+	local DIR="$1"
+
+	for package in $(packages); do
+		if [ -e "$DIR/$package" ]; then
+			cat "$DIR/$package"
+		fi
+	done
 }
 
 as_brew() {
 	BREW=`which brew`
 	BREW_UID=$(stat_uid "$BREW")
 
-	if [ "$BREW_UID" -ne "$UID" ]; then
+	if [ "$BREW_UID" -ne "$(id -u)" ]; then
 		sudo -Hu "#$BREW_UID" "$@"
 	else
 		"$@"
@@ -117,15 +153,16 @@ case $COMMAND in
 		unlink_files "$ROOT/files" "$HOME"
 		;;
 	root)
-		REACHABLE=
 		if sudo -u nobody stat "$ROOT" > /dev/null 2>&1; then
 			REACHABLE=y
 		fi
 
+		find / -xdev -lname "$ROOT/root/*" -delete
+
 		for dir in "$@"; do
 			dir="$ROOT/root/$dir"
 			if [ -d "$dir" ]; then
-				if [ -n "$REACHABLE" ]; then
+				if [ -n "${REACHABLE-}" ]; then
 					link_files "$dir" /
 				else
 					copy_files "$dir" /
@@ -156,8 +193,14 @@ case $COMMAND in
 			fi
 		fi
 
-		if [ "$(stat_uid "$ROOT")" -eq "$UID" ]; then
-			link_files "$ROOT/files" "$HOME"
+		if [ "$(stat_uid "$ROOT")" -eq "$(id -u)" ]; then
+			find "$HOME" -xdev -lname "$ROOT/files/*" -delete
+			for dir in $(packages_ignore); do
+				dir="$ROOT/files/$dir"
+				if [ -d "$dir" ]; then
+					link_files "$dir" "$HOME"
+				fi
+			done
 			echo | vim +PluginInstall +qall > /dev/null 2>&1
 		else
 			echo "WARNING: not updating dotfiles, $USER is not owner" >&2
@@ -186,56 +229,22 @@ case $COMMAND in
 
 		;;
 	update-system)
-		if [ -e "$PACKAGES_FILE" ]; then
-			PACKAGES=`cat "$PACKAGES_FILE"`
-		else
-			echo "You must run setup first" >&2
-			exit 1
-		fi
-
 		if [ -n "$IS_OSX" ]; then
-			(
-				cd "$ROOT/homebrew"
-
-				PACKAGES=`cat $PACKAGES`
-				if [ -e "$HOSTNAME" ]; then
-					PACKAGES="$PACKAGES `cat "$HOSTNAME"`"
-				fi
-
-				brew update
-				brew upgrade
-				brew install $PACKAGES
-			)
+			brew update
+			brew upgrade
+			brew install $(package_contents "$ROOT/homebrew")
 		else
-			"$INSTALL" root $PACKAGES "$HOSTNAME"
+			"$INSTALL" root $(packages)
 
-			(
-				cd "$ROOT/pacman"
+			pacman -Syu --needed --noconfirm $(package_contents "$ROOT/pacman")
 
-				PACKAGES=`cat $PACKAGES`
-				if [ -e "$HOSTNAME" ]; then
-					PACKAGES="$PACKAGES `cat "$HOSTNAME"`"
-				fi
+			RET=0
+			for pkg in $(package_contents "$ROOT/pacman/aur"); do
+				pacman -Qq $pkg > /dev/null 2>&1 ||
+					./install.sh $pkg || RET=$?
+			done
 
-				pacman -Syu --needed --noconfirm $PACKAGES
-			)
-
-			(
-				cd "$ROOT/pacman/aur"
-
-				PACKAGES=`cat $PACKAGES`
-				if [ -e "$HOSTNAME" ]; then
-					PACKAGES="$PACKAGES `cat "$HOSTNAME"`"
-				fi
-
-				RET=0
-				for pkg in $PACKAGES; do
-					pacman -Qq $pkg > /dev/null 2>&1 ||
-						./install.sh $pkg || RET=$?
-				done
-
-				exit $RET
-			)
+			exit $RET
 		fi
 		;;
 	keygen)
@@ -322,9 +331,9 @@ case $COMMAND in
 		TYPE="$1"
 		shift
 
-		PACKAGES=`packages $TYPE`
+		PACKAGES=`package_names $TYPE`
 		if [ ! -e "$CONFIG_ROOT" ]; then
-			if [ "$UID" -ne 0 ]; then
+			if [ "$(id -u)" -ne 0 ]; then
 				sudo mkdir -p "$CONFIG_ROOT"
 				sudo chown "$USER" "$CONFIG_ROOT"
 			else
