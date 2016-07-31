@@ -1,6 +1,6 @@
 [Socket]
 ListenStream=%i
-Service=sshd-local-proxy.service
+Accept=yes
 
 [Install]
 WantedBy=sockets.target
