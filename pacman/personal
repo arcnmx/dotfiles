@@ -4,7 +4,6 @@ alsa-utils
 bluez
 bluez-utils
 ntfs-3g
-chrony
 connman
 watchdog
 efibootmgr
