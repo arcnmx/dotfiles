@@ -1,6 +1,6 @@
 [Timer]
-OnBootSec=1m
-OnUnitActiveSec=1d
+OnCalendar=daily
+Persistent=true
 
 [Install]
 WantedBy=timers.target
