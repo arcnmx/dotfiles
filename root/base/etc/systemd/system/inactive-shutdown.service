@@ -1,0 +1,3 @@
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -ec 'if [ "$(loginctl list-sessions --no-pager --no-legend | wc -l)" -eq 0 ]; then systemctl poweroff; fi'
