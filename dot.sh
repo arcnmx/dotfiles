@@ -177,7 +177,7 @@ case $COMMAND in
 
 		if which zsh > /dev/null 2>&1 && [ ! -d "/usr/share/oh-my-zsh" ]; then
 			if [ -d "$HOME/.oh-my-zsh/git/.git" ]; then
-				(cd "$HOME/.oh-my-zsh/git" && git pull -q)
+				(cd "$HOME/.oh-my-zsh/git" && git pull -q --ff-only)
 			else
 				git clone -q https://github.com/robbyrussell/oh-my-zsh.git "$HOME/.oh-my-zsh/git"
 			fi
@@ -185,7 +185,7 @@ case $COMMAND in
 
 		if which vim > /dev/null 2>&1 && [ ! -d "/usr/share/vundle" ]; then
 			if [ -d "$HOME/.vim/bundle/Vundle.vim/.git" ]; then
-				(cd "$HOME/.vim/bundle/Vundle.vim" && git pull -q)
+				(cd "$HOME/.vim/bundle/Vundle.vim" && git pull -q --ff-only)
 			else
 				git clone -q https://github.com/VundleVim/Vundle.vim.git "$HOME/.vim/bundle/Vundle.vim"
 				mkdir -p "$HOME/.vim/autoload"
@@ -231,12 +231,19 @@ case $COMMAND in
 	update-system)
 		if [ -n "$IS_OSX" ]; then
 			brew update
-			brew upgrade
 			brew install $(package_contents "$ROOT/homebrew")
 		else
 			"$INSTALL" root $(packages)
 
-			pacman -Syu --needed --noconfirm $(package_contents "$ROOT/pacman")
+			PACKAGES=
+			for pkg in $(package_contents "$ROOT/pacman"); do
+				if ! pacman -Qq $pkg > /dev/null 2>&1; then
+					PACKAGES="$PACKAGES $pkg"
+				fi
+			done
+			if [ -n "$PACKAGES" ]; then
+				yes | pacman -Sy --needed --noconfirm --noprogressbar $PACKAGES
+			fi
 
 			RET=0
 			for pkg in $(package_contents "$ROOT/pacman/aur"); do
@@ -245,6 +252,16 @@ case $COMMAND in
 			done
 
 			exit $RET
+		fi
+		;;
+	update-self)
+		(
+			cd "$ROOT"
+			git pull -q --ff-only
+		)
+		"$INSTALL" update
+		if [ "$(id -u)" -eq 0 -a -e "$PACKAGES_FILE" ]; then
+			"$INSTALL" update-system
 		fi
 		;;
 	keygen)
@@ -302,11 +319,13 @@ case $COMMAND in
 		(
 			cd "$ROOT"
 			REMOTE_URL="$(git remote get-url "$(git remote)")"
+			REMOTE_PUSH_URL="$(git remote get-url --push "$(git remote)")"
 			sudo -Hu "$USERNAME" git clone -q . "$INSTALL_ROOT"
 			cp ./.crypt/key "$INSTALL_ROOT/.crypt/"
 			chown "$USERNAME":users "$INSTALL_ROOT/.crypt/key"
 			cd "$INSTALL_ROOT"
 			sudo -Hu "$USERNAME" git remote set-url origin "$REMOTE_URL"
+			sudo -Hu "$USERNAME" git remote set-url --push origin "$REMOTE_PUSH_URL"
 		)
 
 		if [ -d "$ROOT/.crypt/git-crypt/.git" ]; then
