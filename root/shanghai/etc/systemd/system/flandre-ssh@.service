@@ -1,0 +1,8 @@
+[Unit]
+Requires=wake-on-lan@1C:1B:0D:06:22:D3.service
+Requires=remote-host-reachable@10.1.1.33.service
+After=remote-host-reachable@10.1.1.33.service
+
+[Service]
+ExecStart=/usr/bin/socat - tcp:10.1.1.33:22
+StandardInput=socket
