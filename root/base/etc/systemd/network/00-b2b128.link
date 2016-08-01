@@ -1,0 +1,6 @@
+[Match]
+MACAddress=00:50:b6:14:85:e0
+
+[Link]
+Description=Belkin B2B128 USB Ethernet
+Name=ethb2b
