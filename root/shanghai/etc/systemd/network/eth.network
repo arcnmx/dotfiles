@@ -1,0 +1,9 @@
+[Match]
+Name=eth
+
+[Network]
+DHCP=yes
+IPForward=yes
+
+Address=10.1.1.32/24
+Gateway=10.1.1.1
