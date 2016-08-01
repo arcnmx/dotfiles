@@ -11,6 +11,8 @@ alias lla='ls -lhA'
 
 alias cp='cp --reflink=auto --sparse=auto'
 
+alias make='make -j$ARC_CPUS'
+
 alias y='trizen'
 
 if [ -n "$ARC_OSX" ]; then
