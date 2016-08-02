@@ -48,6 +48,7 @@ copy_files() {
 		cd "$DOTFILES"
 		find . -type d -exec mkdir -p "$TARGET/{}" \;
 		find . -type f -o -type l -exec rm -f "$TARGET/{}" \;
+		find . -type f -exec rm -f "$TARGET/{}" \;
 		find . -type f -exec cp -f "{}" "$TARGET/{}" \;
 		find . -type l -not -lname delete -exec cp -af "{}" "$TARGET/{}" \;
 		find . -type l -lname delete -exec rm -f "$TARGET/{}" \;
