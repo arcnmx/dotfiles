@@ -68,6 +68,10 @@ main() {
 	if [ $# -gt 0 ]; then
 		EXEC+=(-- "$@")
 	else
+		if [[ "$SHELL" = */zsh ]]; then
+			SHELL=/bin/bash
+		fi
+
 		EXEC+=(-- "$SHELL" -li)
 	fi
 
