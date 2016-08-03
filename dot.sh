@@ -251,7 +251,7 @@ case $COMMAND in
 			RET=0
 			for pkg in $(package_contents "$ROOT/pacman/aur"); do
 				pacman -Qq $pkg > /dev/null 2>&1 ||
-					./install.sh $pkg || RET=$?
+					"$ROOT/pacman/aur/install.sh" $pkg || RET=$?
 			done
 
 			exit $RET
