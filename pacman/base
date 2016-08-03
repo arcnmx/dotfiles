@@ -41,3 +41,4 @@ dosfstools
 cpupower
 dnsmasq
 rxvt-unicode-terminfo
+lsb-release
