@@ -32,10 +32,6 @@ function dict() {
 	curl "dict://dict.org/$1:$2"
 }
 
-function mosh() {
-	command mosh --server '/bin/sh -c "which mosh-server-upnp > /dev/null 2>&1 && mosh-server-upnp \"\$@\" || mosh-server \"\$@\"" --' "$@"
-}
-
 function cargo-target-dir() {
 	echo "${TMPDIR-/tmp}/cargo-target/$(basename "$PWD")"
 }
