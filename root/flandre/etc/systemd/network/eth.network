@@ -2,7 +2,7 @@
 Name=eth
 
 [Network]
-DHCP=yes
+DHCP=ipv4
 
 Address=10.1.1.33/24
 Gateway=10.1.1.1

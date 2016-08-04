@@ -1,2 +1,4 @@
 wol
 socat
+ddclient
+radvd
