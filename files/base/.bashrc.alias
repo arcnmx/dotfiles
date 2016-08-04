@@ -11,6 +11,9 @@ alias lla='ls -lhA'
 
 alias cp='cp --reflink=auto --sparse=auto'
 
+alias sys='systemctl'
+alias log='journalctl'
+
 alias make='make -j$ARC_CPUS'
 
 alias y='trizen'
