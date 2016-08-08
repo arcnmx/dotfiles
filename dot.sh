@@ -290,23 +290,23 @@ case $COMMAND in
 					fi
 				fi
 			done
-		else
-			for user in $(cat "$ROOT/data/github-users"); do
-				if [ -z "$(shopt -s nullglob; echo "$HOME/.ssh/id_rsa_github_keylist_$user"*.pub)" ]; then
-					echo "Downloading github public keys for $user@github.com" >&2
-					rm -f "$HOME/.ssh/id_rsa_github_keylist_$user.*.pub"
-					COUNTER=0
-					KEYS="$("$ROOT/bin/github-get-keys.sh" "$user" || true)"
-					if [ -n "$KEYS" ]; then
-						echo "$KEYS" | while read line; do
-							COUNTER=$((COUNTER+1))
-							KEYFILE="$HOME/.ssh/id_rsa_github_keylist_$user.$COUNTER.pub"
-							echo "$line" > "$KEYFILE"
-						done
-					fi
-				fi
-			done
 		fi
+
+		for user in $(cat "$ROOT/data/github-users"); do
+			if [ -z "$(shopt -s nullglob; echo "$HOME/.ssh/id_rsa_github_keylist_$user"*.pub)" ]; then
+				echo "Downloading github public keys for $user@github.com" >&2
+				rm -f "$HOME/.ssh/id_rsa_github_keylist_$user.*.pub"
+				COUNTER=0
+				KEYS="$("$ROOT/bin/github-get-keys.sh" "$user" || true)"
+				if [ -n "$KEYS" ]; then
+					echo "$KEYS" | while read line; do
+						COUNTER=$((COUNTER+1))
+						KEYFILE="$HOME/.ssh/id_rsa_github_keylist_$user.$COUNTER.pub"
+						echo "$line" > "$KEYFILE"
+					done
+				fi
+			fi
+		done
 		;;
 	newuser)
 		if [ $# -lt 1 ]; then
