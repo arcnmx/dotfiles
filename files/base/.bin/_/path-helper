@@ -33,4 +33,4 @@ while read -rd: dir; do
 	fi
 done <<< "$PATH"
 
-printf %s: "${PATHS[@]}"
+printf %s: "${PATHS[@]}" | sed 's/:*$//'
