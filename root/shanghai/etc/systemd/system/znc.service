@@ -1,0 +1,12 @@
+[Unit]
+Description=ZNC
+After=network.target
+
+[Service]
+User=znc
+ExecStart=/usr/bin/znc -fn
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

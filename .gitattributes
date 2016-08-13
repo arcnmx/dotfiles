@@ -4,5 +4,6 @@
 /files/personal/.bin/git-config-email filter=git-crypt diff=git-crypt
 /files/personal/.bin/vpsdump filter=git-crypt diff=git-crypt
 /root/*/etc/ddclient/ddclient.conf filter=git-crypt diff=git-crypt
+/root/*/etc/bitlbee/** filter=git-crypt diff=git-crypt
 /root/*/etc/ipsec.d/** filter=git-crypt diff=git-crypt
 /data/github-users filter=git-crypt diff=git-crypt
