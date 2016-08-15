@@ -16,6 +16,7 @@ fi
 
 setxkbmap -option numpad:microsoft
 setxkbmap -option numpad:shift3
+setxkbmap -option ctrl:nocaps
 xsetroot -cursor_name left_ptr
 
 # Reverses scroll direction
