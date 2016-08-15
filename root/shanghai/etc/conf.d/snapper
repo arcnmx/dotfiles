@@ -1,1 +1,1 @@
-SNAPPER_CONFIGS="backup-archive-encrypted backup-transient lilieze lilieze-wim"
+SNAPPER_CONFIGS="backup-archive-encrypted backup-transient lilieze lilieze-wim bitlbee znc gitolite"
