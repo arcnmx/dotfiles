@@ -178,14 +178,6 @@ case $COMMAND in
 			ln -s "$ROOT" "$HOME/.dotfiles"
 		fi
 
-		if which zsh > /dev/null 2>&1 && [ ! -d "/usr/share/oh-my-zsh" ]; then
-			if [ -d "$HOME/.oh-my-zsh/git/.git" ]; then
-				(cd "$HOME/.oh-my-zsh/git" && git pull -q --ff-only)
-			else
-				git clone -q https://github.com/robbyrussell/oh-my-zsh.git "$HOME/.oh-my-zsh/git"
-			fi
-		fi
-
 		if which vim > /dev/null 2>&1 && [ ! -d "/usr/share/vundle" ]; then
 			if [ -d "$HOME/.vim/bundle/Vundle.vim/.git" ]; then
 				(cd "$HOME/.vim/bundle/Vundle.vim" && git pull -q --ff-only)
