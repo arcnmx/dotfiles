@@ -1,0 +1,3 @@
+#!/bin/sh
+
+mpv --cache=no --cache-backbuffer=0 --cache-seek-min=0 --cache-secs=1 http://shanghai.gensokyo.cutie.moe:32101
