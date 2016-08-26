@@ -1,6 +1,6 @@
 zle-keymap-select() {
-zle reset-prompt
-zle -R
+	zle reset-prompt
+	zle -R
 }
 
 TRAPWINCH() {
@@ -13,4 +13,6 @@ zle -N edit-command-line
 bindkey -v
 
 autoload -Uz edit-command-line
+
+bindkey "^?" backward-delete-char
 bindkey -M vicmd 'V' edit-command-line
