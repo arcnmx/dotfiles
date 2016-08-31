@@ -13,6 +13,9 @@ else
 fi
 
 ROOT="$(cd $(dirname "$SELF") && pwd)"
+while [ -L "$ROOT" ]; do
+	ROOT="$(readlink "$ROOT")"
+done
 INSTALL="$ROOT/$(basename "$SELF")"
 
 if [ $# -lt 1 ]; then
