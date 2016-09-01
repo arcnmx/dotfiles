@@ -1,9 +1,6 @@
 #!/bin/sh
 set -eu
 
-# Remote usage:
-# bash -c "$(curl -sSfL https://raw.githubusercontent.com/arcnmx/dotfiles/master/bin/download.sh)" dotfiles [ARGS]
-
 GIT_URL="https://github.com/arcnmx/dotfiles.git"
 
 OPT_ROOT=

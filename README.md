@@ -2,7 +2,7 @@
 
 My settings and things.
 
-    $ bash -c "$(curl -sSfL https://raw.githubusercontent.com/arcnmx/dotfiles/master/bin/download.sh)" dotfiles -h
+    $ curl -sSfL https://raw.githubusercontent.com/arcnmx/dotfiles/master/bin/download.sh | sh -s -- -h
 
 ## OS X
 
