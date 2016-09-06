@@ -1,0 +1,86 @@
+#!/bin/sh
+set -eu
+set -o pipefail
+
+usage() {
+	echo "Usage: $0 [OPTIONS...] DIR BUCKET..."
+	echo " [-h]: show this help"
+	echo " [-d]: delete missing destination files"
+	echo
+	echo " DIR: root directory to sync"
+	echo " BUCKET: destination buckets"
+	echo
+	echo "Syncs a directory for archival storage"
+}
+
+main() {
+	OPT_DELETE=
+
+	while getopts ":hdK:c:C:" opt; do
+		case $opt in
+			h) # --help
+				usage
+				return 0
+				;;
+			d) # --delete-dest
+				OPT_DELETE=y
+				;;
+			:)
+				echo "Expected argument for option: -$OPTARG" >&2
+				usage >&2
+				return 1
+				;;
+			\?)
+				echo "Invalid option: -$OPTARG" >&2
+				usage >&2
+				return 1
+				;;
+		esac
+	done
+	shift $((OPTIND-1))
+
+	if [ $# -lt 2 ]; then
+		usage >&2
+		return 1
+	fi
+
+	DIR="$1"
+	shift
+
+	if ! [ -d "$DIR" ]; then
+		echo "directory '$DIR' does not exist" >&2
+		return 1
+	fi
+
+	for BUCKET in "$@"; do
+		echo "syncing to $BUCKET" >&2
+
+		case "$BUCKET" in
+			s3://*)
+				aws s3 sync "$DIR" "$BUCKET" --storage-class STANDARD_IA
+				;;
+			b2://*)
+				backblaze-b2 sync --skipNewer "$DIR" "$BUCKET"
+				;;
+			file://*)
+				BUCKET="$(echo "$BUCKET" | tail -c+8)"
+				rsync -rau --info=progress2 "$DIR/" "$BUCKET"
+				;;
+			*)
+				echo "unknown bucket: $BUCKET" >&2
+				usage >&2
+				return 1
+				;;
+		esac
+	done
+
+	if [ -n "$OPT_DELETE" ]; then
+		for FILE in "$DIR/*"; do
+			#rm "$FILE"
+			true
+		done
+		echo "delete unimplemented" >&2
+	fi
+}
+
+main "$@"

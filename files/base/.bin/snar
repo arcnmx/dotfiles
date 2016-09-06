@@ -1,0 +1,116 @@
+#!/bin/sh
+set -eu
+
+usage() {
+	echo "Usage: $0 [OPTIONS...] DIR [OUTPUT_DIR]"
+	echo " [-h]: show this help"
+	echo " [-B]: create a temporary BTRFS snapshot to backup"
+	echo " [-S]: find latest snapper snapshot"
+	echo " [-E]: inhibit creation of empty changesets"
+	echo " [-D DIRNAME]: root tar directory [default: basename DIR]"
+	echo
+	echo " DIR: root directory to backup"
+	echo " OUTPUT_DIR: directory to store backup [default: DIR/.snapshots/snar]"
+	echo
+	echo "Backs up a directory as an incremental tarball"
+}
+
+main() {
+	NAME="$(date -u +%y%m%d-%H%M%S)"
+
+	OPT_SNAPPER=
+	OPT_BTRFS_SNAPSHOT=
+	OPT_DIRNAME=
+	OPT_EMPTY=
+
+	while getopts ":hSBD:E" opt; do
+		case $opt in
+			h) # --help
+				usage
+				return 0
+				;;
+			S)
+				OPT_SNAPPER=y
+				;;
+			B)
+				OPT_BTRFS_SNAPSHOT=y
+				;;
+			D)
+				OPT_DIRNAME="$OPTARG"
+				;;
+			E)
+				OPT_EMPTY=y
+				;;
+			:)
+				echo "Expected argument for option: -$OPTARG" >&2
+				usage >&2
+				return 1
+				;;
+			\?)
+				echo "Invalid option: -$OPTARG" >&2
+				usage >&2
+				return 1
+				;;
+		esac
+	done
+	shift $((OPTIND-1))
+
+	if [ $# -lt 1 ]; then
+		usage >&2
+		return 1
+	fi
+
+	DIR="$1"
+	SNAPSHOTS="${2-$DIR/.snapshots/snar}"
+
+	if [ -z "$OPT_DIRNAME" ]; then
+		OPT_DIRNAME="$(basename "$DIR")"
+	fi
+
+	if ! [ -d "$SNAPSHOTS" ]; then
+		echo "snapshot directory '$SNAPSHOTS' does not exist" >&2
+		return 1
+	fi
+
+	if [ -n "$OPT_SNAPPER" ]; then
+		DIR="$DIR/.snapshots/$(cd "$DIR/.snapshots" && ls | grep -x '[0-9]*' | sort -n | tail -n1)/snapshot"
+	fi
+
+	echo "backing up $DIR" >&2
+
+	if [ -n "$OPT_BTRFS_SNAPSHOT" ] && btrfs subvolume show "$DIR" > /dev/null 2>&1; then
+		btrfs subvolume snapshot -r "$DIR" "$SNAPSHOTS/$NAME.snapshot"
+		sync
+		trap 'btrfs subvolume delete "$SNAPSHOTS/$NAME.snapshot"' EXIT
+		DIR="$SNAPSHOTS/$NAME.snapshot"
+	fi
+
+	if [ -s "$SNAPSHOTS/latest" ]; then
+		cp -a "$SNAPSHOTS/$(cat "$SNAPSHOTS/latest").snar" "$SNAPSHOTS/$NAME.snar"
+	else
+		BACKUP_LEVEL=0
+		echo "performing initial full backup" >&2
+	fi
+
+	if tar --one-file-system --numeric-owner --no-check-device \
+		--exclude=./.snapshots \
+		-Scg "$SNAPSHOTS/$NAME.snar" -C "$DIR" \
+		--transform "s|^\\.|$OPT_DIRNAME|" \
+		-f "$SNAPSHOTS/$NAME.tar" \
+		.; then
+		if [ "${BACKUP_LEVEL-}" != 0 -a -n "$OPT_EMPTY" ] && ! tar -tf "$SNAPSHOTS/$NAME.tar" | grep -qv '/$'; then
+			echo "empty tarball generated, deleting" >&2
+			rm "$SNAPSHOTS/$NAME.tar" "$SNAPSHOTS/$NAME.snar"
+			return 0
+		fi
+	else
+		RETVAL=$?
+		rm -f "$SNAPSHOTS/$NAME.snar"
+		rm -f "$SNAPSHOTS/$NAME.tar"
+		return $RETVAL
+	fi
+
+	echo "$NAME" > "$SNAPSHOTS/latest"
+}
+
+main "$@"
