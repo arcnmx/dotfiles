@@ -1,1 +1,2 @@
-SNAPPER_CONFIGS="backup-archive-encrypted backup-transient lilieze lilieze-wim bitlbee znc gitolite"
+SNAPPER_CONFIGS="backup-transient lilieze lilieze-wim bitlbee znc gitolite"
+SNAR_CONFIGS="backup-rolling-archdrop backup-rolling-gmail-bu backup-rolling-gmail-arc backup-rolling-gmail-ae backup-rolling-git-bu backup-rolling-git-fl"
