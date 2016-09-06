@@ -50,8 +50,11 @@ main() {
 			if [ "${SNAR_ENABLE-}" = "yes" ]; then
 				if ! [ -d "$SNAR" ]; then
 					mkdir "$SNAR"
-					chown :snar "$SNAR"
-					chmod u+rwx,g+rs,g-w,o-rwx "$SNAR"
+
+					if [ $(id -u) -eq 0 ]; then
+						chown :snar "$SNAR"
+						chmod u+rwx,g+rs,g-w,o-rwx "$SNAR"
+					fi
 				fi
 
 				SNAR_FLAGS=-BE
@@ -85,7 +88,15 @@ main() {
 				mv "$TMP/"* "$SNAR/"
 
 				if [ -n "${SNAR_SYNC-}" ]; then
-					cat "$(which bsync)" | sudo -u snar sh -s -- -d "$SNAR/.enc" $SNAR_SYNC
+					_bsync() {
+						if [ $(id -u) -eq 0 ]; then
+							cat "$(which bsync)" | sudo -u snar sh -s -- "$@"
+						else
+							bsync "$@"
+						fi
+					}
+
+					_bsync -d "$SNAR/.enc" $SNAR_SYNC
 				fi
 			fi
 		)
