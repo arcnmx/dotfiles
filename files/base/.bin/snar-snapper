@@ -12,7 +12,7 @@ usage() {
 }
 
 main() {
-	SNAPPER_CONFIGS=/etc/snapper/configs
+	SNAPPER_DIR=/etc/snapper/configs
 
 	while getopts ":h" opt; do
 		case $opt in
@@ -35,7 +35,7 @@ main() {
 	shift $((OPTIND-1))
 
 	if [ $# -lt 1 ]; then
-		CONFIGS="$(SNAPPER_CONFIGS= && . /etc/conf.d/snapper && echo $SNAPPER_CONFIGS ${SNAR_CONFIGS-})"
+		CONFIGS="$(. /etc/conf.d/snapper && echo $SNAPPER_CONFIGS ${SNAR_CONFIGS-})"
 	else
 		CONFIGS="$*"
 	fi
@@ -43,7 +43,7 @@ main() {
 	for CONFIG in $CONFIGS; do
 		(
 			. /etc/conf.d/snapper
-			. "$SNAPPER_CONFIGS/$CONFIG"
+			. "$SNAPPER_DIR/$CONFIG"
 
 			SNAR="$SUBVOLUME/.snapshots/snar"
 
