@@ -1,0 +1,87 @@
+#!/bin/sh
+set -eu
+
+usage() {
+	echo "Usage: $0 [OPTIONS...]"
+	echo " [-h]: show this help"
+	echo " [-i INTERVAL]: sleep interval"
+	echo " [-o]: only run once and then exit"
+}
+
+main() {
+	OPT_INTERVAL=3
+	OPT_ONCE=
+
+	while getopts ":hoi:" opt; do
+		case $opt in
+			h) # --help
+				usage
+				return 0
+				;;
+			i) # --interval
+				OPT_INTERVAL="$OPTARG"
+				;;
+			o) # --once
+				OPT_ONCE=y
+				;;
+			:)
+				echo "Expected argument for option: -$OPTARG" >&2
+				usage >&2
+				return 1
+				;;
+			\?)
+				echo "Invalid option: -$OPTARG" >&2
+				usage >&2
+				return 1
+				;;
+		esac
+	done
+	shift $((OPTIND-1))
+
+	nvidia-settings -a "GPUFanControlState=1"
+
+	if [ -n "$OPT_ONCE" ]; then
+		fancheck
+	else
+		while true; do
+			fancheck
+
+			sleep "$OPT_INTERVAL"
+		done
+	fi
+}
+
+fancheck() {
+	TEMP=$(nvidia-settings -q GPUCoreTemp | grep -Eo '[0-9]+\.$' | head -n1 | cut -d. -f1)
+	CURSPEED=$(nvidia-settings -q GPUCurrentFanSpeed | grep -Eo '[0-9]+\.$' | head -n1 | cut -d. -f1)
+
+	case "$TEMP" in
+		[0-9]|[0-3][0-9])
+			FANSPEED=15
+			;;
+		4[0-9])
+			FANSPEED=20
+			;;
+		5[0-9])
+			FANSPEED=35
+			;;
+		6[0-9])
+			FANSPEED=50
+			;;
+		7[0-9])
+			FANSPEED=65
+			;;
+		8[0-9])
+			FANSPEED=80
+			;;
+		*)
+			FANSPEED=100
+			;;
+	esac
+
+	if [ "$FANSPEED" -ne "$CURSPEED" ]; then
+		nvidia-settings -a "GPUTargetFanSpeed=$FANSPEED" > /dev/null 2>&1
+	fi
+}
+
+main "$@"

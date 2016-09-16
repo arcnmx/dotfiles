@@ -1,0 +1,86 @@
+#!/bin/sh
+set -eu
+
+usage() {
+	echo "Usage: $0 [OPTIONS...] PROFILE"
+	echo " [-h]: show this help"
+	echo
+	echo "PROFILES"
+	echo " work: work monitor"
+	echo " desk: desk with horizontal main monitor"
+	echo " deskv: desk with vertical main monitor"
+}
+
+main() {
+	while getopts ":h" opt; do
+		case $opt in
+			h) # --help
+				usage
+				return 0
+				;;
+			:)
+				echo "Expected argument for option: -$OPTARG" >&2
+				usage >&2
+				return 1
+				;;
+			\?)
+				echo "Invalid option: -$OPTARG" >&2
+				usage >&2
+				return 1
+				;;
+		esac
+	done
+	shift $((OPTIND-1))
+
+	if [ $# -lt 1 ]; then
+		echo "profile expected" >&2
+		usage >&2
+		return 1
+	fi
+
+	PROFILE="$1"
+	shift
+
+	case "$(hostname -s)" in
+		flandre)
+			case $PROFILE in
+				desk)
+					xrandr --output DP-2 --primary --auto \
+						--output DVI-D-0 --left-of DP-2 --auto \
+						--output HDMI-0 --above DP-2 --auto --rotate inverted
+					;;
+				deskv)
+					xrandr --output DP-2 --primary --auto --rotate left \
+						--output DVI-D-0 --left-of DP-2 --auto \
+						--output HDMI-0 --above DP-2 --auto --rotate inverted
+					;;
+				*)
+					echo "unsupported profile" >&2
+					usage >&2
+					return 1
+			esac
+			;;
+		satorin)
+			case $PROFILE in
+				work)
+					xrandr --output HDMI1 --auto --primary --left-of eDP1
+					;;
+				home)
+					xrandr --output HDMI1 --off
+					;;
+				*)
+					echo "unsupported profile" >&2
+					usage >&2
+					return 1
+					;;
+			esac
+			;;
+	esac
+
+	if which konawall > /dev/null 2>&1; then
+		# this is probably done elsewhere...
+		konawall &
+	fi
+}
+
+main "$@"
