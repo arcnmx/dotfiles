@@ -65,6 +65,10 @@ main() {
 		EXEC+=(-a -u "$USER")
 	fi
 
+	if [ -d "/tmp/.X11-unix" ]; then
+		EXEC+=(--bind=/tmp/.X11-unix)
+	fi
+
 	if [ $# -gt 0 ]; then
 		EXEC+=(-- "$@")
 	else
