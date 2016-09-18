@@ -14,7 +14,7 @@ fi
 
 ROOT="$(cd $(dirname "$SELF") && pwd)"
 while [ -L "$ROOT" ]; do
-	ROOT="$(readlink "$ROOT")"
+	ROOT="$(readlink -e "$ROOT")"
 done
 INSTALL="$ROOT/$(basename "$SELF")"
 
