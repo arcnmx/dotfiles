@@ -1,0 +1,6 @@
+[Timer]
+OnCalendar=Sat,Tue,Thu *-*-* 01:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

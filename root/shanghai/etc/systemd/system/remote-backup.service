@@ -1,0 +1,12 @@
+[Unit]
+Description=Remote Backup
+After=network.target
+
+[Service]
+User=arc
+Type=oneshot
+ExecStart=/mnt/data/backup/rolling/working/git/update
+ExecStart=/mnt/data/backup/rolling/working/gmail/update
+
+[Install]
+WantedBy=multi-user.target

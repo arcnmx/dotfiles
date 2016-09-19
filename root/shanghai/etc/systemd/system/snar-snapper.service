@@ -1,0 +1,11 @@
+[Unit]
+Description=snar-snapper
+After=network.target
+
+[Service]
+Type=oneshot
+Environment=PATH=/bin:/root/.bin
+ExecStart=/root/.bin/snar-snapper
+
+[Install]
+WantedBy=multi-user.target
