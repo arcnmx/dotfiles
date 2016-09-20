@@ -1,3 +1,4 @@
+/files/personal/.weechat/irc.conf filter=git-crypt diff=git-crypt
 /files/personal/.gitconfig.url filter=git-crypt diff=git-crypt
 /files/personal/.ssh/config filter=git-crypt diff=git-crypt
 /files/personal/.cargo/config filter=git-crypt diff=git-crypt

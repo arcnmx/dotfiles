@@ -1,0 +1,7 @@
+perl/buffers.pl
+perl/iset.pl
+python/go.py
+python/colorize_nicks.py
+python/vimode.py # github.com/arcnmx/weechat-vimode:prefs
+python/urlgrab.py
+python/anotify.py
