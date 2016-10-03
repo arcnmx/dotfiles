@@ -67,6 +67,8 @@ map Q gq
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
 
+nnoremap q <Nop>
+
 syntax on
 set hlsearch
 
