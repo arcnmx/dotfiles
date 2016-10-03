@@ -33,6 +33,32 @@ set background=dark " dark | light "
 set cursorline
 set colorcolumn=80
 set shortmess+=I
+let g:notmuch_folders = [
+\ ['new', 'tag:unread and tag:inbox'],
+\ ['inbox', 'tag:inbox'],
+\ ['unread', 'tag:unread and not tag:inbox'],
+\ ['all', 'path:**'],
+\ ['work', 'tag:work'],
+\ ['junk', 'tag:junk'],
+\ ]
+let g:notmuch_folders_count_threads=0
+let g:notmuch_date_format='%y-%m-%d %H:%M'
+let g:notmuch_datetime_format='%y-%m-%d %H:%M'
+let g:notmuch_custom_search_maps={
+\ 'x': 'kill_this_buffer()',
+\ 'd': 'search_tag("+deleted -inbox -unread")',
+\ }
+let g:notmuch_custom_show_maps={
+\ 'x': 'kill_this_buffer()',
+\ 'd': 'search_tag("+deleted -inbox -unread")',
+\ }
+let g:notmuch_save_sent_locally=1
+let g:notmuch_save_sent_mailbox='sent'
+let g:notmuch_sendmail_method='sendmail'
+let g:notmuch_sendmail_param={
+\ 'location': '/usr/bin/msmtp',
+\}
+
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -49,6 +75,7 @@ call vundle#begin()
 Plugin 'tpope/vim-dispatch'
 Plugin 'cespare/vim-toml'
 Plugin 'rust-lang/rust.vim'
+Plugin 'imain/notmuch-vim'
 Plugin 'altercation/vim-colors-solarized'
 call vundle#end()
 
