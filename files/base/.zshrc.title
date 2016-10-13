@@ -1,6 +1,6 @@
 function term_title {
 	emulate -L zsh
-	setopt prompt_subst
+	unsetopt prompt_subst
 
 	[[ -t 1 ]] || return
 
