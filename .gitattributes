@@ -12,5 +12,6 @@
 /root/*/etc/snapper/** filter=git-crypt diff=git-crypt
 /root/*/etc/bitlbee/** filter=git-crypt diff=git-crypt
 /root/*/etc/ipsec.d/** filter=git-crypt diff=git-crypt
+/root/*/etc/offlineimap/** filter=git-crypt diff=git-crypt
 /data/github-users filter=git-crypt diff=git-crypt
 /data/mew filter=git-crypt diff=git-crypt
