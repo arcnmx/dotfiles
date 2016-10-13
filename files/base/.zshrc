@@ -28,7 +28,7 @@ HISTSIZE=10000
 SAVEHIST=10000
 
 autoload -U compinit
-compinit -ui
+compinit -u -i
 
 WORDCHARS=''
 zmodload -i zsh/complist

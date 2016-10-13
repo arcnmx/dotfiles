@@ -75,6 +75,8 @@ function __arc_update_preexec {
 	term_title "$TERM_TITLE" "$TERM_TAB"
 }
 
+zmodload zsh/langinfo
+
 function __omz_urlencode() {
 	emulate -L zsh
 	zparseopts -D -E -a opts r m P
