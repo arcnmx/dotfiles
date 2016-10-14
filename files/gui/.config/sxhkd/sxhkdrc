@@ -1,10 +1,10 @@
 XF86AudioLowerVolume
 	notify-send -u low -t 1000 "Volume Decreased" \
-	"`amixer set Master playback 5- | grep -Po '\d+%'`"
+	"`amixer set Master playback 5- | grep -Po '\d+%' | tail -n1`"
 
 XF86AudioRaiseVolume
 	notify-send -u low -t 1000 "Volume Increased" \
-	"`amixer set Master playback 5+ | grep -Po '\d+%'`"
+	"`amixer set Master playback 5+ | grep -Po '\d+%' | tail -n1`"
 
 XF86AudioMute
 	notify-send -u low -t 2000 "Mute Toggled" \
