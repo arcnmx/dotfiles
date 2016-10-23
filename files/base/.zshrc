@@ -1,6 +1,5 @@
 PROMPT_EOL_MARK=
 KEYTIMEOUT=1
-REPORTTIME=30
 DEFAULT_USER=arc
 
 . ~/.bashrc.env
@@ -43,6 +42,9 @@ zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-dir
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
 zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
 zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+REPORTTIME=10
+TIMEFMT=$'time %J\n%*S kernel, %*U userspace\n%*E elapsed (%P CPU)'
 
 . ~/.zshrc.title
 . ~/.zshrc.prompt
