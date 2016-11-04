@@ -16,7 +16,7 @@ usage() {
 }
 
 main() {
-	EXEC=(systemd-nspawn -D / --register=false)
+	EXEC=(systemd-nspawn -D / --register=false --bind-ro=/etc/resolv.conf:/etc/resolv.conf)
 
 	while getopts ":hbrH" opt; do
 		case $opt in
