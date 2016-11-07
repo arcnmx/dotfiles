@@ -28,5 +28,5 @@ shift + XF86Search
 super + @p
 	sleep 0.2; xset dpms force off
 
-super + @[
+super + bracketleft
 	physlock -dms
