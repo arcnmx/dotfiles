@@ -3,7 +3,7 @@ Description=Hard drive power saving
 
 [Service]
 Type=oneshot
-ExecStart=/sbin/hdparm -B 251 /dev/disk/by-id/wwn-%i
+ExecStart=/usr/bin/hdparm -B 251 /dev/disk/by-id/wwn-%i
 
 [Install]
 WantedBy=multi-user.target
