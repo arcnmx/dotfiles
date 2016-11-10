@@ -1,0 +1,3 @@
+[filter "tabspace"]
+	smudge = gunexpand --tabs=4
+	clean = gexpand --tabs=4
