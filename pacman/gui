@@ -27,12 +27,11 @@ xorg-xmodmap
 xf86-video-intel
 xterm
 
-cairo-infinality-ultimate
-freetype2-infinality-ultimate
-ibfonts-meta-base
+cairo
+freetype2
 ttf-bitstream-vera
 ttf-freefont
 ttf-inconsolata
-ttf-droid-ib
+ttf-droid
 
 libreoffice-fresh
