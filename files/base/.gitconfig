@@ -1,11 +1,13 @@
-[init]
-	templateDir = ~/.config/git/templates
 [user]
 	useConfigOnly = true
 [color]
 	ui = auto
 [push]
 	default = simple
+[alias]
+	logs = log --stat --pretty=medium --graph
+[init]
+	templateDir = ~/.config/git/templates
 [include]
 	path = .gitconfig.filter
 	path = .gitconfig.url
