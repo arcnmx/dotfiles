@@ -2,6 +2,23 @@
 set -eu
 set -o pipefail
 
+disconnect() {
+	echo disconnecting from gensokyo
+	ipsec down gensokyo-client || true
+	systemctl stop strongswan
+}
+
+connect() {
+	echo connecting to gensokyo
+	systemctl restart strongswan
+	while [ ! -e /var/run/charon.ctl ]; do
+		sleep 0.1
+		systemctl start strongswan
+	done
+	sleep 1
+	ipsec up gensokyo-client
+}
+
 dbus-monitor --system "type='signal',interface='net.connman.Manager',member='PropertyChanged'" |
 while read -r LINE; do
 	if ! echo "$LINE" | grep -q online; then
@@ -9,19 +26,12 @@ while read -r LINE; do
 	fi
 
 	if ip -4 addr show | grep -q '10\.1\.1\.[0-9]*/24'; then
-		echo disconnecting from gensokyo
-		ipsec down gensokyo-client || true
-		systemctl stop strongswan
+		disconnect
 	elif ip -4 addr show | grep -v '127\.0\.0\.[0-9]*' | grep -q inet; then
 		if ! ipsec status gensokyo-client || ipsec status gensokyo-client | grep -q "no match"; then
-			echo connecting to gensokyo
-			systemctl restart strongswan
-			while [ ! -e /var/run/charon.ctl ]; do
-				sleep 0.1
-				systemctl start strongswan
-			done
-			sleep 1
-			ipsec up gensokyo-client
+			connect
+		elif ! ping -c 1 -W 6 10.1.1.1 > /dev/null 2>&1; then
+			connect
 		fi
 	fi
 done
