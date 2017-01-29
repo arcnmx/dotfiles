@@ -29,7 +29,7 @@ if [ "`hostname`" = "satorin" ]; then
 	syndaemon -K -d -m 100 -i 0.1
 fi
 
-(sleep 2; xcompmgr) &
+xcompmgr &
 #compton -bGC --no-fading-openclose
 
 urxvtd &
