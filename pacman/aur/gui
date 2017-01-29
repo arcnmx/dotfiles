@@ -1,8 +1,11 @@
 compton
 
-fonts-meta-base
+ttf-droid-monovar
+ttf-courier-prime
+ttf-heuristica
 ttf-ms-fonts
 ttf-vista-fonts
+fonts-meta-base
 
 acroread
 google-talkplugin
