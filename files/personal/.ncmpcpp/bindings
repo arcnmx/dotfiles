@@ -70,7 +70,7 @@ def_key "J"
 
 def_key "a"
 	add_item_to_playlist
-def_key "a"
+def_key "+"
 	add
 def_key "D"
 	clear_playlist
@@ -106,3 +106,6 @@ def_key "space"
 
 def_key "ctrl-l"
 	update_database
+
+def_command "add" [deferred]
+	add
