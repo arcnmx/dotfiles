@@ -8,6 +8,8 @@
 	logs = log --stat --pretty=medium --graph
 [init]
 	templateDir = ~/.config/git/templates
+[rebase]
+	autosquash = true
 [include]
 	path = .gitconfig.filter
 	path = .gitconfig.url
