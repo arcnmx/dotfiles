@@ -8,6 +8,7 @@ set showcmd
 set incsearch
 
 set viminfo='100000,<100000,s1000,h " Get rid of line copy limit
+silent ! [ -d $HOME/.vim/swap ] || mkdir $HOME/.vim/swap
 set directory=$HOME/.vim/swap//
 
 set tabstop=4
