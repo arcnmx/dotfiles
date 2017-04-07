@@ -7,7 +7,8 @@ set ruler
 set showcmd
 set incsearch
 
-set viminfo='100000,<100000,s10,h " Get rid of line copy limit
+set viminfo='100000,<100000,s1000,h " Get rid of line copy limit
+set directory=$HOME/.vim/swap//
 
 set tabstop=4
 set softtabstop=4
@@ -24,7 +25,7 @@ let clang_exec="/usr/bin/clang++"
 let rust_recommended_style=0
 set completeopt=menuone,longest
 set timeoutlen=100
-au BufRead,BufNewFile *.as set filetype=javascript
+au BufRead,BufNewFile *.as setlocal filetype=javascript
 au BufRead,BufNewFile *.rs compiler cargo
 let g:cargo_makeprg_params="check --color always"
 let g:vim_markdown_folding_disabled=1
@@ -111,3 +112,9 @@ endif
 
 colorscheme solarized
 " call togglebg#map("<F5>")
+
+" Avoid E173
+if argc() > 1
+  silent blast " load last buffer
+  silent bfirst " switch back to the first
+endif
