@@ -1,3 +1,3 @@
 [filter "tabspace"]
-	smudge = unexpand --tabs=4
-	clean = expand --tabs=4
+	smudge = unexpand --first-only --tabs=4
+	clean = expand -i --tabs=4
