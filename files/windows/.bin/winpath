@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [ $# -gt 0 ]; then
+	printf %s "$*"
+else
+	cat
+fi | sed -e 's|\\|/|g' -e 's|^\([A-Za-z]\)\:/\(.*\)|/mnt/\L\1\E/\2|'

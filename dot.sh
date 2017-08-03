@@ -31,6 +31,11 @@ if [[ "$OSTYPE" == darwin* ]]; then
 	IS_OSX=y
 fi
 
+IS_WINDOWS=
+if grep -q Microsoft /proc/version_signature; then
+	IS_WINDOWS=y
+fi
+
 CONFIG_ROOT=/opt/arc
 PACKAGES_FILE="$CONFIG_ROOT/etc/arc/packages"
 HOSTNAME="$(hostname -s)"
@@ -111,6 +116,9 @@ packages_ignore() {
 
 	if [ -n "$IS_OSX" ]; then
 		echo osx
+	fi
+	if [ -n "$IS_WINDOWS" ]; then
+		echo windows
 	fi
 
 	echo "$USER"
@@ -202,6 +210,10 @@ case $COMMAND in
 			echo | vim +PluginInstall +qall > /dev/null 2>&1
 		else
 			echo "WARNING: not updating dotfiles, $USER is not owner" >&2
+		fi
+
+		if [ -n "$IS_WINDOWS" ]; then
+			$ROOT/bin/windows.sh update
 		fi
 
 		if [[ "$SHELL" != *zsh ]] && which zsh > /dev/null 2>&1; then
