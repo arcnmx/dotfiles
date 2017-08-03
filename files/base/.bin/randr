@@ -42,6 +42,23 @@ main() {
 	shift
 
 	case "$(hostname -s)" in
+		shanghai)
+			case $PROFILE in
+				desk)
+					xrandr \
+						--output DVI-D-1 --auto --pos 0x$((2160-1080)) \
+						--output HDMI-1 --primary --mode 3840x2160 --pos 1920x0
+					;;
+				deskv)
+					xrandr --output HDMI-1 --primary --auto --rotate left \
+						--output DVI-D-1 --left-of HDMI-1 --auto
+					;;
+				*)
+					echo "unsupported profile" >&2
+					usage >&2
+					return 1
+			esac
+			;;
 		flandre)
 			case $PROFILE in
 				desk)

@@ -2,10 +2,13 @@
 set -eu
 
 if [ -z "${KONATAGS-}" ]; then
-	KONATAGS="rating:safe+score:>=90"
+	KONATAGS="score:>=200"
 
 	if [ "`hostname -s`" = "satorin" ]; then
 		KONATAGS="$KONATAGS+nobody"
+	fi
+	if [ "`hostname -s`" = "shanghai" ]; then
+		KONATAGS="$KONATAGS+rating:safe"
 	fi
 fi
 TAGS="$KONATAGS+order:random+width:>=1600"

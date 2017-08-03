@@ -24,13 +24,17 @@ xsetroot -cursor_name left_ptr
 
 #wallpaper
 
-if [ "`hostname`" = "satorin" ]; then
+HOSTNAME=$(hostname)
+if [[ "$HOSTNAME" = "satorin" ]]; then
 	sxhkd & > /dev/null 2>&1
 	syndaemon -K -d -m 100 -i 0.1
 fi
 
-xcompmgr &
-#compton -bGC --no-fading-openclose
+if [[ "$HOSTNAME" = "shanghai" ]]; then
+	compton -bGC --no-fading-openclose
+else
+	xcompmgr &
+fi
 
 urxvtd &
 
