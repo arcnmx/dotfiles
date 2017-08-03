@@ -6,7 +6,7 @@ gcc-multilib
 gcc-libs-multilib
 gdb
 
-abs
+asp
 zsh
 dkms
 zsh-completions

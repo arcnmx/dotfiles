@@ -1,4 +1,4 @@
-compton
+gtk3-typeahead
 
 ttf-droid-monovar
 ttf-courier-prime
@@ -10,3 +10,5 @@ fonts-meta-base
 acroread
 google-talkplugin
 flashplayer-standalone
+
+browserpass-bin
