@@ -1,7 +1,7 @@
 set complete=lt
 set maxitems=20
 set messagetimeout=2000
-set defsearch=google
+set defsearch=g
 set hc=jfkdlsawoeicmghqpz
 set focuscontent
 set titlestring="Firefox"
