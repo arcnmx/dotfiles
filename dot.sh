@@ -32,7 +32,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
 fi
 
 IS_WINDOWS=
-if grep -q Microsoft /proc/version_signature; then
+if grep -qs Microsoft /proc/version_signature; then
 	IS_WINDOWS=y
 fi
 
