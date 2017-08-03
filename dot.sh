@@ -172,6 +172,11 @@ case $COMMAND in
 		fi
 
 		find / -xdev -lname "$ROOT/root/*" -delete 2>/dev/null || true
+		find /etc/systemd/ -type l -delete 2>/dev/null || true
+
+		if [ $# -eq 0 ]; then
+			set -- $(packages)
+		fi
 
 		for dir in "$@"; do
 			dir="$ROOT/root/$dir"
@@ -243,7 +248,7 @@ case $COMMAND in
 			brew update
 			brew install $(package_contents "$ROOT/homebrew")
 		else
-			"$INSTALL" root $(packages)
+			"$INSTALL" root
 
 			PACKAGES=
 			for pkg in $(package_contents "$ROOT/pacman"); do

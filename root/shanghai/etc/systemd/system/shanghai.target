@@ -1,0 +1,6 @@
+[Unit]
+Requires=multi-user.target
+Wants=shanghai-sync.target shanghai-irc.target
+After=multi-user.target shanghai-sync.target shanghai-irc.target
+Conflicts=rescue.service rescue.target
+AllowIsolate=yes

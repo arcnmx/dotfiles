@@ -15,6 +15,7 @@ mpv
 scrot
 xclip
 xcompmgr
+compton
 rxvt-unicode
 xorg-server
 xorg-xev

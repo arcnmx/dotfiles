@@ -9,3 +9,5 @@ Address=10.1.1.32/24
 Gateway=10.1.1.1
 
 Address=fd09:0:0:1::1/64
+
+Domains=gensokyo.cutie.moe

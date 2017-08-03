@@ -1,6 +1,0 @@
-[Socket]
-ListenStream=33022
-Accept=true
-
-[Install]
-WantedBy=sockets.target

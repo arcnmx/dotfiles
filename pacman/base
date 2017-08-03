@@ -42,3 +42,5 @@ cpupower
 dnsmasq
 rxvt-unicode-terminfo
 lsb-release
+rng-tools
+systemd-swap

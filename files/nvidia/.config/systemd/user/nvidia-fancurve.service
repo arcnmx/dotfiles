@@ -1,0 +1,9 @@
+[Unit]
+Description=nvidia fan management
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/env ${HOME}/.bin/nvidia-fancurve
+
+[Install]
+WantedBy=default.target

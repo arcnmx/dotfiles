@@ -5,7 +5,5 @@ After=network.target
 [Service]
 Type=oneshot
 Environment=PATH=/bin:/root/.bin
+Environment=AWS_DEFAULT_PROFILE=arc_s3backup
 ExecStart=/root/.bin/snar-snapper
-
-[Install]
-WantedBy=multi-user.target

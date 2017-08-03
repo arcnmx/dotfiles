@@ -1,10 +1,10 @@
 [Unit]
 Requires=network-online.target
-After=network.target
+After=network-online.target
 
 [Service]
 User=%i
-ExecStart=/usr/bin/offlineimap -u syslog -c /etc/offlineimap/%i.conf
+ExecStart=/usr/bin/offlineimap -u quiet -s -c /etc/offlineimap/%i.conf
 KillSignal=SIGUSR2
 Restart=always
 

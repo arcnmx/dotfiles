@@ -1,0 +1,16 @@
+[Unit]
+Requires=network-online.target bitlbee.socket znc.service
+After=network-online.target bitlbee.socket znc.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+User=arc
+
+WorkingDirectory=/home/arc
+ExecStart=/usr/bin/tmux new-session -d -s main -n mail -- vim +NotMuch
+ExecStart=/usr/bin/tmux new-window -d -t main -n irc -- weechat
+ExecStop=/usr/bin/tmux kill-session -t main
+
+[Install]
+WantedBy=multi-user.target

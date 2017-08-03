@@ -1,0 +1,5 @@
+[Swap]
+What=/dev/disk/by-uuid/4faab83b-164e-444c-b1b6-4a26e7f7e6bf
+
+[Install]
+WantedBy=swap.target
