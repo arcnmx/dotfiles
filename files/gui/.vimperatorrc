@@ -60,6 +60,10 @@ set! browser.rights.3.shown=true
 set! layout.spellcheckDefault=2
 set! view_source.syntax_highlight=true
 set! view_source.wrap_long_lines=true
+set! browser.download.folderList=2
+set! browser.sessionstore.max_resumed_crashes=10
+set! browser.startup.homepage=about:blank
+set! general.smoothScroll=false
 
 " enable pipelining
 set! network.http.pipelining=true
