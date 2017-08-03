@@ -204,6 +204,12 @@ case $COMMAND in
 			fi
 		fi
 
+		if [ -d "$HOME/.weechat/weechat-vimode/.git" ]; then
+			(cd "$HOME/.weechat/weechat-vimode" && git pull -q --ff-only)
+		else
+			git clone -q -b prefs https://github.com/arcnmx/weechat-vimode.git "$HOME/.weechat/weechat-vimode"
+		fi
+
 		if [ "$(stat_uid "$ROOT")" -eq "$(id -u)" ]; then
 			find "$HOME" -xdev -lname "$ROOT/files/*" -delete 2>/dev/null || true
 			for dir in $(packages_ignore); do

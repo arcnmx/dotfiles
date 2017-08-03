@@ -1,0 +1,1 @@
+../../weechat-vimode/vimode-arc.py
