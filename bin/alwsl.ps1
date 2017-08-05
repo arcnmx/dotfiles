@@ -1,3 +1,4 @@
+$ErrorActionPreference = "Stop"
 (New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/alwsl/alwsl/master/alwsl.bat') -replace "`n", "`r`n" | Out-File -Encoding ASCII alwsl.bat
 Start-Process -Wait -Verb RunAs -ArgumentList "-Command","Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux" powershell
 .\alwsl.bat install
