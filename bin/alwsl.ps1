@@ -1,6 +1,13 @@
 $ErrorActionPreference = "Stop"
-(New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/alwsl/alwsl/master/alwsl.bat') -replace "`n", "`r`n" | Out-File -Encoding ASCII alwsl.bat
+
+# Enable developer mode
+Start-Process -Wait -Verb RunAs -ArgumentList "add","HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock","/t","REG_DWORD","/f","/v","AllowDevelopmentWithoutDevLicense","/d","1" reg
+
+# Install WSL
 Start-Process -Wait -Verb RunAs -ArgumentList "-Command","Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux" powershell
+
+# Install Arch using https://github.com/alwsl/alwsl
+(New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/alwsl/alwsl/master/alwsl.bat') -replace "`n", "`r`n" | Out-File -Encoding ASCII alwsl.bat
 .\alwsl.bat install
 bash -c 'pacman --noconfirm -Syu'
 bash -c 'pacman --noconfirm -S git curl'
