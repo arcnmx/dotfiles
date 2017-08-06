@@ -8,4 +8,4 @@
 !linux !linux-headers !watchdog !dkms !cpupower !rng-tools !systemd-swap !systemd !efibootmgr !intel-ucode !x86_energy_perf_policy
 !polkit
 !tlp
-!xdg-utils
+!sshfs
