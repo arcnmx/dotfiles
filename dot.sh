@@ -263,7 +263,7 @@ case $COMMAND in
 				fi
 			done
 			if [ -n "$PACKAGES" ]; then
-				yes | pacman -Sy --needed --noconfirm --noprogressbar $PACKAGES
+				yes | pacman -Sy --needed  --noprogressbar $PACKAGES
 			fi
 
 			RET=0
