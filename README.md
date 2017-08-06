@@ -12,4 +12,4 @@ My settings and things.
 
 Populate a new Arch Linux installation with these dotfiles.
 
-    $ Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/arcnmx/dotfiles/master/bin/alwsl.ps1')
+    $ iex (New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/arcnmx/dotfiles/master/bin/alwsl.ps1')
