@@ -256,7 +256,7 @@ case $COMMAND in
 		else
 			"$INSTALL" root
 
-			PACKAGES=
+			PACKAGES=" "
 			NOPACKAGES=
 			for pkg in $(package_contents "$ROOT/pacman"); do
 				if [[ "$pkg" = '!'* ]]; then
@@ -266,7 +266,7 @@ case $COMMAND in
 				fi
 			done
 			for pkg in $NOPACKAGES; do
-				PACKAGES=$(echo "$PACKAGES" | sed -e "s/\b$pkg\b//g")
+				PACKAGES=$(echo "$PACKAGES" | sed -e "s/ $pkg / /g")
 			done
 
 			PACKAGES=$(echo "$PACKAGES" | sed -e "s/ +/ /g" -e "s/^ $//")
