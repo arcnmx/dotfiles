@@ -30,7 +30,6 @@ p7zip
 pkgfile
 rsync
 sshfs
-xdg-utils
 radare2
 strace
 polkit

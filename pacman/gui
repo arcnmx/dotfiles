@@ -16,6 +16,7 @@ scrot
 xclip
 xcompmgr
 compton
+xdg-utils
 rxvt-unicode
 xorg-server
 xorg-xev
