@@ -257,11 +257,20 @@ case $COMMAND in
 			"$INSTALL" root
 
 			PACKAGES=
+			NOPACKAGES=
 			for pkg in $(package_contents "$ROOT/pacman"); do
-				if ! pacman -Qq $pkg > /dev/null 2>&1; then
+				if [[ "$pkg" = '!'* ]]; then
+					NOPACKAGES="$NOPACKAGES ${pkg:1:${#pkg}}"
+				elif ! pacman -Qq $pkg > /dev/null 2>&1; then
 					PACKAGES="$PACKAGES $pkg"
 				fi
 			done
+			for pkg in $NOPACKAGES; do
+				PACKAGES=$(echo "$PACKAGES" | sed -e "s/\b$pkg\b//g")
+			done
+
+			PACKAGES=$(echo "$PACKAGES" | sed -e "s/ +/ /g" -e "s/^ $//")
+
 			if [ -n "$PACKAGES" ]; then
 				yes | pacman -Sy --needed  --noprogressbar $PACKAGES
 			fi
