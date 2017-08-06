@@ -1,0 +1,8 @@
+!glibc !fakeroot
+
+!mdadm !cryptsetup !device-mapper !lvm2
+!pciutils !pcmciautils !usbutils !acpi !alsa-utils !bluez !bluez-utils
+!netctl !dhcpcd !bind-tools !net-tools !ntp !dnsmasq !connman 
+!e2fsprogs !jfsutils !reiserfsprogs !xfsprogs !btrfs-progs !dosfstools !ntfs-3g
+!smartmontools !gptfdisk !parted
+!linux !linux-headers !watchdog !dkms !cpupower !rng-tools !systemd-swap !systemd !efibootmgr !intel-ucode
