@@ -98,7 +98,7 @@ main() {
 		--transform "s|^\\.|$OPT_DIRNAME|" \
 		-f "$SNAPSHOTS/$NAME.tar" \
 		.; then
-		if [ "${BACKUP_LEVEL-}" != 0 -a -n "$OPT_EMPTY" ] && ! tar -tf "$SNAPSHOTS/$NAME.tar" | grep -qv '/$'; then
+		if [ "${BACKUP_LEVEL-}" != 0 -a -n "$OPT_EMPTY" ] && ! tar -tf "$SNAPSHOTS/$NAME.tar" 2> /dev/null | grep -qv '/$'; then
 			echo "empty tarball generated, deleting" >&2
 			rm "$SNAPSHOTS/$NAME.tar" "$SNAPSHOTS/$NAME.snar"
 			return 0
