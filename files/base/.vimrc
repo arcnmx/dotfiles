@@ -20,6 +20,8 @@ set number
 command Spaces set expandtab
 command Tabs set noexpandtab
 
+set hidden " allow buffer switching without saving
+
 let clang_complete_auto=1
 let clang_use_library=1
 let clang_library_path="/usr/lib"
