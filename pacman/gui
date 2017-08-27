@@ -11,6 +11,7 @@ libnotify
 youtube-dl
 mplayer
 mpv
+libx264 libx264-all
 
 scrot
 xclip
