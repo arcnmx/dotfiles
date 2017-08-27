@@ -28,6 +28,7 @@ zip
 tmux
 p7zip
 pkgfile
+mlocate
 rsync
 sshfs
 radare2
