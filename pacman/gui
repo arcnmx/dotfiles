@@ -28,6 +28,7 @@ xorg-xsetroot
 xorg-xmodmap
 xf86-video-intel
 xterm
+libglvnd
 
 cairo
 freetype2
