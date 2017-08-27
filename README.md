@@ -3,6 +3,7 @@
 My settings and things.
 
     $ curl -sSfL https://raw.githubusercontent.com/arcnmx/dotfiles/master/bin/download.sh | sh -s -- -h
+    $ ~/.dotfiles/dot.sh newuser arc wheel,audio,uucp
 
 ## OS X
 
