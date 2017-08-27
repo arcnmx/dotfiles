@@ -167,7 +167,7 @@ case $COMMAND in
 		unlink_files "$ROOT/files" "$HOME"
 		;;
 	root)
-		if sudo -u nobody stat "$ROOT" > /dev/null 2>&1; then
+		if su -s /bin/sh nobody -c "stat \"$ROOT\"" > /dev/null 2>&1; then
 			REACHABLE=y
 		fi
 
