@@ -1,4 +1,6 @@
 $ErrorActionPreference = "Stop"
+Set-ExecutionPolicy Unrestricted
+Start-Process -Wait -Verb RunAs -ArgumentList "-Command","Set-ExecutionPolicy Unrestricted" powershell
 
 # Enable developer mode
 Start-Process -Wait -Verb RunAs -ArgumentList "add","HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock","/t","REG_DWORD","/f","/v","AllowDevelopmentWithoutDevLicense","/d","1" reg
