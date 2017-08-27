@@ -44,7 +44,7 @@ done
 shift $((OPTIND-1))
 
 crypt_unlock() {
-	if [ -n "$OPT_NO_CRYPT" ]; then
+	if [ -z "$OPT_NO_CRYPT" ]; then
 		./dot.sh crypt-unlock
 	fi
 }
