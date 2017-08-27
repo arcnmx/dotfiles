@@ -30,7 +30,7 @@ prompt_segment() {
 }
 
 prompt_context() {
-	if [[ "$USER" != "$DEFAULT_USER" || -n "${SSH_CLIENT-}" ]]; then
+	if [[ ($UID -ne 0 && "$USER" != "$DEFAULT_USER") || -n "${SSH_CLIENT-}" ]]; then
 		prompt_segment "%{%F{red}%}$USER%{%f%B%}@%{%b%F{red}%}%m%{%f%}"
 	fi
 }
