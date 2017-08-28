@@ -1,0 +1,20 @@
+PermitRootLogin yes
+MaxSessions 100
+
+AuthorizedKeysFile .ssh/authorized_keys
+
+ChallengeResponseAuthentication no
+
+UsePAM yes
+
+AllowAgentForwarding yes
+AllowTcpForwarding yes
+GatewayPorts yes
+X11Forwarding yes
+PrintMotd no
+PermitUserEnvironment yes
+Compression yes
+UseDNS no
+PermitTunnel yes
+
+Subsystem	sftp	/usr/lib/ssh/sftp-server
