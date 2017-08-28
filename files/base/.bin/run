@@ -1,0 +1,10 @@
+#!/bin/bash
+
+ARGS=(urxvtc +sb
+	-name run -title run -g 80x8
+	-bg rgba:8888/3333/6666/cccc
+	-fg rgb:e0/98/e0
+	-e "$SHELL" -i
+)
+
+ARC_PROMPT_RUN=y exec "${ARGS[@]}"

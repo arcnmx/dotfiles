@@ -86,3 +86,39 @@ build_prompt() {
 
 PROMPT='%{%f%b%k%}$(build_prompt) '
 #RPROMPT='$(date)'
+
+if [[ -n "${ARC_PROMPT_RUN-}" ]]; then
+	PROMPT='%{%F{white}%B%}:;%{%b%f%} '
+	__arc_run() {
+		if [[ -n "$BUFFER" ]]; then
+			# add to history if it doesn't start with a space
+			if [[ "$BUFFER" != " "* ]]; then
+				print -s "$BUFFER"
+			fi
+
+			# run process in bg, check if it exits within a short timeframe
+			if ! (
+				echo
+				unset ARC_PROMPT_RUN
+				eval "exec $BUFFER" &
+				BUFFER_PID=$!
+				sleep 0.1
+				[[ -d /proc/$BUFFER_PID ]]
+			); then
+				# if it does (likely due to error), wait for enter
+				PROMPT="..."
+				BUFFER=" read; exit"
+			else
+				BUFFER=" exit"
+			fi
+		else
+			BUFFER=" exit"
+		fi
+		echo -e "\n\n\n"
+		zle reset-prompt
+		zle .accept-line
+	}
+	zle -N accept-line __arc_run
+
+	trap "exit" INT # ^C exits
+fi

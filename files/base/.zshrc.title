@@ -133,8 +133,10 @@ function __omz_urlencode() {
 	echo -E "$url_str"
 }
 
-chpwd_functions+=(term_dir)
-precmd_functions+=(__arc_update_precmd)
-preexec_functions+=(__arc_update_preexec)
+if [[ -z "${ARC_PROMPT_RUN-}" ]]; then
+	chpwd_functions+=(term_dir)
+	precmd_functions+=(__arc_update_precmd)
+	preexec_functions+=(__arc_update_preexec)
 
-term_dir
+	term_dir
+fi
