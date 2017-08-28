@@ -167,6 +167,11 @@ case $COMMAND in
 		unlink_files "$ROOT/files" "$HOME"
 		;;
 	root)
+		if [ "$(id -u)" -ne 0 ]; then
+			echo "must be root" >&2
+			exit 1
+		fi
+
 		if su -s /bin/sh nobody -c "stat \"$ROOT\"" > /dev/null 2>&1; then
 			REACHABLE=y
 		fi
