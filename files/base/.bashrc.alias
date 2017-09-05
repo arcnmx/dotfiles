@@ -28,7 +28,12 @@ else
 	alias up='y -Syu'
 fi
 
-alias chromium='chromium --process-per-site'
+if which apulse > /dev/null 2>&1; then
+	alias web='apulse firefox'
+else
+	alias web='firefox'
+fi
+# alias web='chromium --process-per-site'
 
 function dict() {
 	curl "dict://dict.org/$1:$2"
