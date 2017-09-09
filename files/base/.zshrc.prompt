@@ -96,6 +96,9 @@ if [[ -n "${ARC_PROMPT_RUN-}" ]]; then
 				print -s "$BUFFER"
 			fi
 
+			# expand aliases
+			zle _expand_alias
+
 			# run process in bg, check if it exits within a short timeframe
 			if ! (
 				echo
