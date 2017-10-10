@@ -25,16 +25,18 @@ URxvt.colorUL: #86a2be
 
 #include ".Xresources.solarized"
 
-Xft.dpi:        96
-Xft.antialias:  true
-Xft.rgba:       rgb
-Xft.hinting:    true
-Xft.hintstyle:  hintfull
+Xft.dpi: 96
+Xft.antialias: true
+Xft.rgba: rgb
+Xft.hinting: true
+Xft.hintstyle: hintfull
+Xft.autohint: true
+Xft.lcdfilter: lcddefault
 
 #define SIZE_SMALL 8
 #define SIZE_NORMAL 9
 #define SIZE_LARGE 12
-#define FONT(sz) xft:Droid Sans Mono Dotted-sz:antialias=true
+#define FONT(sz) xft:Droid Sans Mono Dotted-sz
 #define BOLD weight=200
 #define ITALIC slant=110
 URxvt.font: FONT(SIZE_NORMAL)
@@ -60,4 +62,4 @@ URxvt.keysym.C-equal: command:\
 \033]712;FONT(SIZE_LARGE):ITALIC\007\
 \033]713;FONT(SIZE_LARGE):ITALIC:BOLD\007
 
-URxvt*letterSpace: -2
+URxvt*letterSpace: -1

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ARGS=(urxvtc +sb
+ARGS=(urxvt +sb
 	-name run -title run -g 80x8
 	-bg rgba:8888/3333/6666/cccc
 	-fg rgb:e0/98/e0

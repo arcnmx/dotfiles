@@ -117,7 +117,7 @@ if [[ -n "${ARC_PROMPT_RUN-}" ]]; then
 		else
 			BUFFER=" exit"
 		fi
-		echo -e "\n\n\n"
+		echo -en "\n"
 		zle reset-prompt
 		zle .accept-line
 	}
