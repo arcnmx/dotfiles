@@ -27,6 +27,10 @@ cmd_update() {
 
 	# vimperatorrc
 	cp files/gui/.vimperatorrc "$HOMEPATH/"
+
+	# ssh
+	mkdir -p "$HOMEPATH/.ssh"
+	cp "$HOME/.ssh/authorized_keys" "$HOMEPATH/.ssh/"
 }
 
 COMMAND=$1
