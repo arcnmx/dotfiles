@@ -14,9 +14,8 @@ unique_instance.exec("org.luakit." .. (vars.profile_name or "default"))
 
 local lousy = require "lousy"
 
-if profile_name then
-    msg.info("loading profile " .. profile_name)
-    vars.profile_dir = luakit.data_dir .. "/profiles/" .. profile_name
+if vars.profile_name then
+    vars.profile_dir = luakit.data_dir .. "/profiles/" .. vars.profile_name
     lousy.util.mkdir(vars.profile_dir)
 else
     vars.profile_dir = luakit.data_dir
