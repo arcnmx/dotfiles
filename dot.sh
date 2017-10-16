@@ -162,6 +162,27 @@ brew() {
 	as_brew "$BREW" "$@"
 }
 
+git_update() {
+	local ARGS=(-q)
+
+	local URI=$1
+	local DIR=$2
+	shift 2
+
+	if [ $# -gt 0 ]; then
+		local BRANCH=$1
+		ARGS+=(-b "$BRANCH")
+	fi
+
+	if [ -L "$DIR" ]; then
+		true
+	elif [ -d "$DIR/.git" ]; then
+		(cd "$DIR" && git pull -q --ff-only) || true
+	else
+		git clone "${ARGS[@]}" "$URI" "$DIR"
+	fi
+}
+
 case $COMMAND in
 	uninstall)
 		unlink_files "$ROOT/files" "$HOME"
@@ -200,20 +221,14 @@ case $COMMAND in
 		fi
 
 		if which vim > /dev/null 2>&1 && [ ! -d "/usr/share/vundle" ]; then
-			if [ -d "$HOME/.vim/bundle/Vundle.vim/.git" ]; then
-				(cd "$HOME/.vim/bundle/Vundle.vim" && git pull -q --ff-only)
-			else
-				git clone -q https://github.com/VundleVim/Vundle.vim.git "$HOME/.vim/bundle/Vundle.vim"
+			git_update https://github.com/VundleVim/Vundle.vim.git "$HOME/.vim/bundle/Vundle.vim"
+			if [ ! -e "$HOME/.vim/autoload/vundle" ]; then
 				mkdir -p "$HOME/.vim/autoload"
 				ln -s "$HOME/.vim/bundle/Vundle.vim/autoload/"* "$HOME/.vim/autoload/"
 			fi
 		fi
 
-		if [ -d "$HOME/.weechat/weechat-vimode/.git" ]; then
-			(cd "$HOME/.weechat/weechat-vimode" && git pull -q --ff-only)
-		else
-			git clone -q -b prefs https://github.com/arcnmx/weechat-vimode.git "$HOME/.weechat/weechat-vimode"
-		fi
+		git_update https://github.com/arcnmx/weechat-vimode.git "$HOME/.weechat/weechat-vimode" prefs
 
 		if [ "$(stat_uid "$ROOT")" -eq "$(id -u)" ]; then
 			find "$HOME" -xdev -lname "$ROOT/files/*" -delete 2>/dev/null || true
@@ -415,9 +430,7 @@ case $COMMAND in
 		if ! which git-crypt > /dev/null 2>&1; then
 			echo "git-crypt not found in PATH, using shell replacement" >&2
 			GIT_CRYPT_DIR="$ROOT/.crypt/git-crypt"
-			if [ ! -d "$GIT_CRYPT_DIR" ]; then
-				git clone -q https://github.com/arcnmx/git-crypt.sh "$GIT_CRYPT_DIR"
-			fi
+			git_update https://github.com/arcnmx/git-crypt.sh "$GIT_CRYPT_DIR"
 			export PATH="$GIT_CRYPT_DIR:$PATH"
 		fi
 
