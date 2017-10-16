@@ -35,6 +35,8 @@ else
 fi
 # alias web='chromium --process-per-site'
 
+alias mpa='mpv --no-video'
+
 function dict() {
 	curl "dict://dict.org/$1:$2"
 }
