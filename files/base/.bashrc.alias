@@ -14,6 +14,7 @@ alias sys='systemctl'
 alias log='journalctl'
 
 alias make='make -j$ARC_CPUS'
+alias tmain='tmux att -t main'
 
 alias y='trizen'
 
