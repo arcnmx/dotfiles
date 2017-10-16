@@ -229,6 +229,10 @@ case $COMMAND in
 		fi
 
 		git_update https://github.com/arcnmx/weechat-vimode.git "$HOME/.weechat/weechat-vimode" prefs
+		git_update https://github.com/arcnmx/luakit-pass.git "$HOME/.config/luakit/pass"
+		git_update https://github.com/arcnmx/luakit-paste.git "$HOME/.config/luakit/paste"
+		git_update https://github.com/arcnmx/luakit-unique_instance.git "$HOME/.config/luakit/unique_instance"
+		git_update https://github.com/luakit/luakit-plugins.git "$HOME/.config/luakit/plugins"
 
 		if [ "$(stat_uid "$ROOT")" -eq "$(id -u)" ]; then
 			find "$HOME" -xdev -lname "$ROOT/files/*" -delete 2>/dev/null || true

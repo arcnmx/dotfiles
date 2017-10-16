@@ -1,0 +1,165 @@
+# i3 config file (v4)
+
+font pango:Droid Sans Mono Dotted 8
+
+hide_edge_borders smart
+focus_follows_mouse yes
+
+for_window [title="^run$"] floating enable
+# no_focus [title="luakit"]
+
+exec_always konawall
+
+set $alt Mod1
+set $logo Mod4
+set $mod Mod4
+
+set $left h
+set $down j
+set $up k
+set $right l
+
+set $term urxvtc
+set $menu run
+
+mouse_warping output
+force_focus_wrapping yes
+
+bindsym $mod+Return exec $term
+bindsym $mod+control+Return exec $term -e ssh shanghai
+bindsym $mod+shift+Return exec $term -e mosh shanghai
+
+bindsym $mod+shift+c kill
+bindsym $mod+r exec $menu
+
+floating_modifier $mod
+
+bindsym $mod+shift+r reload
+
+bindsym XF86AudioLowerVolume exec amixer set Master playback 5- && pkill -USR1 i3status
+bindsym XF86AudioRaiseVolume exec amixer set Master playback 5+ && pkill -USR1 i3status
+bindsym XF86AudioMute exec amixer set Master playback toggle && pkill -USR1 i3status
+
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+bindsym $mod+p exec sleep 0.2 && xset dpms force off
+
+bindsym $mod+bracketleft exec physlock -dms
+
+bindsym $mod+shift+Escape exit
+
+bindsym $mod+a focus parent
+bindsym $mod+q focus child
+bindsym $mod+n focus next
+bindsym $mod+m focus prev
+
+bindsym $mod+control+$left focus output left
+bindsym $mod+control+$down focus output down
+bindsym $mod+control+$up focus output up
+bindsym $mod+control+$right focus output right
+
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+shift+control+$left move container to output left
+bindsym $mod+shift+control+$down move container to output down
+bindsym $mod+shift+control+$up move container to output up
+bindsym $mod+shift+control+$right move container to output right
+
+bindsym $mod+$alt+shift+control+$left move workspace to output left
+bindsym $mod+$alt+shift+control+$down move workspace to output down
+bindsym $mod+$alt+shift+control+$up move workspace to output up
+bindsym $mod+$alt+shift+control+$right move workspace to output right
+
+bindsym $mod+shift+a move first
+bindsym $mod+shift+n move next
+bindsym $mod+shift+m move prev
+
+bindsym $mod+shift+$left move left
+bindsym $mod+shift+$down move down
+bindsym $mod+shift+$up move up
+bindsym $mod+shift+$right move right
+
+bindsym $mod+shift+Left move left
+bindsym $mod+shift+Down move down
+bindsym $mod+shift+Up move up
+bindsym $mod+shift+Right move right
+
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+bindsym $mod+shift+1 move container to workspace 1
+bindsym $mod+shift+2 move container to workspace 2
+bindsym $mod+shift+3 move container to workspace 3
+bindsym $mod+shift+4 move container to workspace 4
+bindsym $mod+shift+5 move container to workspace 5
+bindsym $mod+shift+6 move container to workspace 6
+bindsym $mod+shift+7 move container to workspace 7
+bindsym $mod+shift+8 move container to workspace 8
+bindsym $mod+shift+9 move container to workspace 9
+bindsym $mod+shift+0 move container to workspace 10
+
+bindsym $mod+b splith
+bindsym $mod+v splitv
+
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+bindsym $mod+f fullscreen
+
+bindsym $mod+shift+space floating toggle
+
+bindsym $mod+space focus mode_toggle
+
+bindsym $mod+shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 10 px or 10 ppt
+    bindsym $down resize grow height 10 px or 10 ppt
+    bindsym $up resize shrink height 10 px or 10 ppt
+    bindsym $right resize grow width 10 px or 10 ppt
+
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+z mode "default"
+}
+bindsym $mod+z mode "resize"
+
+# man 5 sway-bar
+bar {
+    status_command i3status
+    font pango:Droid Sans Mono Dotted 8
+    position top
+    colors {
+        statusline #ffffff
+        background #323232
+        inactive_workspace #32323200 #32323200 #5c5c5c
+    }
+    workspace_buttons yes
+}

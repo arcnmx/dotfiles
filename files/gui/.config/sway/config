@@ -1,0 +1,17 @@
+# man 5 sway
+
+# font "Droid Sans Mono Dotted 8"
+exec_always xrdb -I$HOME -load ~/.Xresources
+exec_always urxvtd
+
+smart_gaps on
+seamless_mouse on
+
+include /home/arc/.config/i3/config
+include /home/arc/.config/sway/*.conf
+include /etc/sway/config.d/*
+
+bindsym $mod+bracketleft exec swaylock -u -c 111111
+bindsym $mod+p exec xbacklight -set $([[ $(xbacklight -get) = 0 ]] && echo 100 || echo 0)
+
+output * background #111111 solid_color
