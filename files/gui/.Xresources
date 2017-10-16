@@ -1,8 +1,8 @@
 ! urxvt -pe tabbed
-URxvt.tabbed.tabbar-fg:2
-URxvt.tabbed.tabbar-bg:0
-URxvt.tabbed.tab-fg:3
-URxvt.tabbed.tab-bg:0
+URxvt.tabbed.tabbar-fg: 2
+URxvt.tabbed.tabbar-bg: 0
+URxvt.tabbed.tab-fg: 3
+URxvt.tabbed.tab-bg: 0
 
 !URxvt.termName: rxvt-unicode
 URxvt.saveLines: 16384
@@ -11,6 +11,7 @@ URxvt.urgentOnBell: true
 URxvt.imLocale: en_US.UTF-8
 URxvt.scrollBar: false
 URxvt.cursorBlink: false
+URxvt.iso14755: false
 URxvt.fading: 0
 
 URxvt.perl-ext-common: default,matcher
