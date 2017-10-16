@@ -31,6 +31,7 @@ let clang_exec="/usr/bin/clang++"
 let rust_recommended_style=0
 set completeopt=menuone,longest
 set timeoutlen=100
+au BufRead,BufNewFile *.kt setlocal filetype=kotlin
 au BufRead,BufNewFile *.as setlocal filetype=javascript
 au BufRead,BufNewFile *.rs compiler cargo
 let g:cargo_makeprg_params="check --color always"
