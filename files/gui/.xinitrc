@@ -45,4 +45,7 @@ urxvtd &
 
 #dropboxd &
 
+xrandr > /dev/null 2>&
+randr default
+
 exec "$XDG_CURRENT_DESKTOP"

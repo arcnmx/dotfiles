@@ -43,7 +43,9 @@ main() {
 
 	case "$(hostname -s)" in
 		shanghai)
-			case $PROFILE in
+			case $(ordefault default $PROFILE) in
+				default)
+					;;
 				desk)
 					xrandr \
 						--output DVI-D-1 --auto --pos 0x$((2160-1080)) \
@@ -60,7 +62,11 @@ main() {
 			esac
 			;;
 		flandre)
-			case $PROFILE in
+			case $(ordefault deskintel $PROFILE) in
+				deskintel)
+					xrandr --output HDMI1 --primary --mode 3840x2160 \
+						--output HDMI2 --left-of HDMI1 --auto
+					;;
 				desk)
 					xrandr --output DP-2 --primary --auto \
 						--output DVI-D-0 --left-of DP-2 --auto \
@@ -78,7 +84,9 @@ main() {
 			esac
 			;;
 		satorin)
-			case $PROFILE in
+			case $(ordefault default $PROFILE) in
+				default)
+					;;
 				work)
 					xrandr --output HDMI1 --auto --primary --left-of eDP1
 					;;
@@ -97,6 +105,14 @@ main() {
 	if which konawall > /dev/null 2>&1; then
 		# this is probably done elsewhere...
 		konawall &
+	fi
+}
+
+ordefault() {
+	if [[ $2 == default ]]; then
+		echo "$1"
+	else
+		echo "$2"
 	fi
 }
 
