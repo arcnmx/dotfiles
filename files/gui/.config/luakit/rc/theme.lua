@@ -30,6 +30,8 @@ follow.stylesheet = [=[
     background-color: #000088;
     border: 1px dashed #000;
     padding: 1px;
+    margin-top: 8px;
+    margin-left: -8px;
     color: #fff;
     font-size: 12px;
     font-family: monospace, courier, sans-serif;
