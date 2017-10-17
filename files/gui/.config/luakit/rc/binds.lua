@@ -12,7 +12,7 @@ modes.remove_binds("normal", { "<control-w>" })
 
 modes.add_cmds({
     { ":mpv", "Open current URL in mpv",
-        function (w) os.execute(string.format("mpv %q &", w.view.uri)) end },
+        function (w) os.execute(string.format("mpv --keep-open=yes %q &", w.view.uri)) end },
     { ":mpa", "Open current URL in mpv (audio only)",
         function (w) os.execute(string.format("urxvt -e mpv --no-video %q &", w.view.uri)) end },
 })
