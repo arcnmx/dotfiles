@@ -6,6 +6,7 @@ hide_edge_borders smart
 focus_follows_mouse yes
 
 for_window [title="^run$"] floating enable
+for_window [title="^pinentry$"] floating enable
 # no_focus [title="luakit"]
 
 exec_always konawall
