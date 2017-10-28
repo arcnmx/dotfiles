@@ -1,5 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 set -eu
+set -o pipefail
 
 usage() {
 	echo "Usage: $0 [OPTIONS...] PROFILE"
@@ -89,6 +90,12 @@ main() {
 					;;
 				work)
 					xrandr --output HDMI1 --auto --primary --left-of eDP1
+
+					if [ "$XDG_CURRENT_DESKTOP" = i3 ]; then
+						while read workspace; do
+							i3-msg "workspace \"$workspace\"; move workspace to output HDMI1"
+						done < <(i3-msg -t get_workspaces | jq -er '.[].name // empty')
+					fi
 					;;
 				home)
 					xrandr --output HDMI1 --off
