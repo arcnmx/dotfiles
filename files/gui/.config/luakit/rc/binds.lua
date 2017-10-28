@@ -1,13 +1,21 @@
 local modes = require "modes"
-local rebind = require "rc.rebind"
 
-rebind(modes.get_mode("command"), ":b[uffers]", ":tabmenu", false)
-rebind(modes.get_mode("tabmenu"), "<x>", "<Delete>")
+modes.remap_binds("command", {
+    { ":b[uffers]", ":tabmenu", true },
+})
 
-rebind(modes.get_mode("insert"), "<control-i>", "<control-z>")
-rebind(modes.get_mode("normal"), "<control-i>", "<control-z>")
+modes.remap_binds("tabmenu", {
+    { "x", "<Delete>", false },
+})
 
-rebind(modes.get_mode("normal"), "<x>", "<d>")
+modes.remap_binds({"insert", "normal"}, {
+    { "<Control-i>", "<Control-z>", false },
+})
+
+modes.remap_binds("normal", {
+    { "x", "d", false },
+})
+
 modes.remove_binds("normal", { "<control-w>" })
 
 modes.add_cmds({
