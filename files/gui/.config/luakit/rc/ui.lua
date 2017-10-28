@@ -8,11 +8,15 @@ if vars.tab_windows then
     window.add_signal("init", function (w)
         w.new_tab_backup = w.new_tab
         w.new_tab = function (w, arg, opts)
-            if w.tabs ~= nil and w.tabs:count() > 0 then
-                -- TODO: opts
-                window.new({ arg })
+            if type(arg) == "table" and arg.newtab_hack then
+                arg.tab = w:new_tab_backup(arg.arg, arg.opts)
+                return arg.tab
+            elseif w.tabs ~= nil and w.tabs:count() > 0 then
+                local args = { newtab_hack = true, arg = arg, opts = opts }
+                local new_w = window.new({args})
+                return args.tab
             else
-                w.new_tab_backup(w, arg, opts)
+                return w:new_tab_backup(arg, opts)
             end
         end
     end)
