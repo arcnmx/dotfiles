@@ -1,6 +1,6 @@
 local vars = require "rc.vars"
 
-luakit.process_limit = 0
+luakit.process_limit = 4
 
 soup.accept_policy = "always"
 soup.cookies_storage = vars.profile_dir .. "/cookies.db"

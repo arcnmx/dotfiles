@@ -22,6 +22,7 @@ settings.window.search_engines = {
     r = "https://reddit.com/r/%s",
     rs = "https://doc.rust-lang.org/std/index.html?search=%s",
     crates = "https://crates.io/search?q=%s",
+    aur = "https://aur.archlinux.org/packages/?K=%s",
     default = "https://encrypted.google.com/search?q=%s",
 }
 
