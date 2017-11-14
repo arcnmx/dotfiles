@@ -35,11 +35,8 @@ if [[ "$HOSTNAME" = "satorin" ]]; then
 	syndaemon -K -d -m 100 -i 0.1
 fi
 
-if [[ "$HOSTNAME" = "shanghai" ]]; then
-	compton -bGC --no-fading-openclose
-else
-	xcompmgr &
-fi
+#compton -bGC --no-fading-openclose
+xcompmgr &
 
 urxvtd &
 
