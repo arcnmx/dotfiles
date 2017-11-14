@@ -5,6 +5,8 @@
 /files/personal/.bin/git-config-email filter=git-crypt diff=git-crypt
 /files/personal/.bin/vpsdump filter=git-crypt diff=git-crypt
 /files/*/.msmtprc filter=git-crypt diff=git-crypt
+/files/*/.taskrc filter=git-crypt diff=git-crypt
+/files/*/.task/*.pem filter=git-crypt diff=git-crypt
 /files/*/.notmuch/** filter=git-crypt diff=git-crypt
 /files/*/.notmuch-config filter=git-crypt diff=git-crypt
 /root/*/etc/ddclient/ddclient.conf filter=git-crypt diff=git-crypt
