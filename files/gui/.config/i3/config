@@ -25,6 +25,7 @@ set $menu run
 
 mouse_warping output
 force_focus_wrapping yes
+workspace_auto_back_and_forth yes
 
 bindsym $mod+Return exec $term
 bindsym $mod+control+Return exec $term -e ssh shanghai
@@ -43,13 +44,14 @@ bindsym XF86AudioMute exec amixer set Master playback toggle && pkill -USR1 i3st
 
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
-bindsym $mod+p exec sleep 0.2 && xset dpms force off
+bindsym --release $mod+p exec sleep 0.2 && xset dpms force off
 
 # vm hotkeys
 bindsym --release KP_Divide exec vm unseat
 bindsym --release KP_Multiply exec vm seat
 
-bindsym $mod+bracketleft exec physlock -dms
+# bindsym --release $mod+bracketleft exec physlock -dms
+bindsym --release $mod+bracketleft exec sleep 0.2 && xset dpms force off && i3lock -e -u -c 111111
 
 bindsym $mod+shift+Escape exit
 
