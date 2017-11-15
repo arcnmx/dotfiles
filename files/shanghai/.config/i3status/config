@@ -3,7 +3,7 @@ general {
 	color_good = "#11bb11"
 	color_degraded = "#889911"
 	color_bad = "#bb2222"
-	interval = 60
+	interval = 20
 }
 
 order += "volume master"
