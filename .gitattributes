@@ -17,6 +17,7 @@
 /root/*/etc/offlineimap/** filter=git-crypt diff=git-crypt
 /root/*/etc/target/* filter=git-crypt diff=git-crypt
 /root/*/etc/nginx/domains filter=git-crypt diff=git-crypt
+/root/*/etc/prosody/prosody-domains.cfg.lua filter=git-crypt diff=git-crypt
 /root/**/system/rto-bem.service filter=git-crypt diff=git-crypt
 /root/**/system/*.mount filter=git-crypt diff=git-crypt
 /data/* filter=git-crypt diff=git-crypt

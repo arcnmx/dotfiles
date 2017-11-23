@@ -7,6 +7,7 @@ mpd
 youtube-dl
 gitolite
 znc
+prosody lua51-sec
 nginx
 certbot certbot-nginx
 aws-cli
