@@ -7,6 +7,8 @@ mpd
 youtube-dl
 gitolite
 znc
+nginx
+certbot certbot-nginx
 aws-cli
 
 offlineimap
