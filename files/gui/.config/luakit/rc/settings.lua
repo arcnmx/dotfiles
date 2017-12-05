@@ -15,15 +15,16 @@ settings.webview.enable_dns_prefetching = true
 settings.webview.enable_webaudio = true
 settings.window.scroll_step = 100
 settings.window.search_engines = {
-    gh = "https://github.com/search?q=%s",
     g = "https://encrypted.google.com/search?q=%s",
+    gh = "https://github.com/search?q=%s",
     w = "https://en.wikipedia.org/wiki/Special:Search?search=%s",
     ddg = "https://duckduckgo.com/?q=%s",
     r = "https://reddit.com/r/%s",
     rs = "https://doc.rust-lang.org/std/index.html?search=%s",
     crates = "https://crates.io/search?q=%s",
     aur = "https://aur.archlinux.org/packages/?K=%s",
-    default = "https://encrypted.google.com/search?q=%s",
+    yt = "https://www.youtube.com/results?search_query=%s",
 }
+settings.window.default_search_engine = "g"
 
 -- vim: et:sw=4:ts=8:sts=4:tw=80
