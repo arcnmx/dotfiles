@@ -2,8 +2,8 @@ coreutils mdadm bash bzip2 coreutils cryptsetup device-mapper dhcpcd diffutils e
 autoconf automake binutils bison fakeroot flex groff libtool m4 make patch pkg-config sudo
 linux-headers
 
-gcc-multilib
-gcc-libs-multilib
+gcc
+gcc-libs
 gdb
 
 asp
