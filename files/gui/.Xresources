@@ -16,6 +16,8 @@ URxvt.fading: 0
 
 URxvt.perl-ext-common: default,matcher
 URxvt.url-launcher: luakit
+!URxvt.keysym.C-f: perl:matcher:last
+URxvt.keysym.M-f: perl:matcher:list
 URxvt.matcher.button: 3
 URxvt.colorUL: #86a2be
 
