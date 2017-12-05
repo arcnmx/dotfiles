@@ -85,7 +85,7 @@ call vundle#begin()
 Plugin 'tpope/vim-dispatch'
 Plugin 'cespare/vim-toml'
 Plugin 'rust-lang/rust.vim'
-Plugin 'imain/notmuch-vim'
+Plugin 'arcnmx/notmuch-vim'
 Plugin 'altercation/vim-colors-solarized'
 call vundle#end()
 
