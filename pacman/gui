@@ -42,3 +42,16 @@ ttf-inconsolata
 ttf-droid
 
 libreoffice-fresh
+
+aur/ttf-droid-monovar
+aur/ttf-courier-prime
+aur/ttf-heuristica
+aur/ttf-ms-fonts
+aur/ttf-vista-fonts
+aur/fonts-meta-base
+
+aur/google-talkplugin
+aur/flashplayer-standalone
+aur/apulse
+
+arcnmx/arch-gtk3-arc:gtk3-arc

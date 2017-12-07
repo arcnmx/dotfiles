@@ -278,15 +278,36 @@ case $COMMAND in
 			brew update
 			brew install $(package_contents "$ROOT/homebrew")
 		else
-			"$INSTALL" root
+			if [ "$(id -u)" -eq 0 ]; then
+				"$INSTALL" root
+			else
+				pacman() {
+					sudo pacman "$@"
+				}
+			fi
+
+			pkg_name() {
+				echo "$*" | cut -d / -f 2- | cut -d : -f 2-
+			}
+			pkg_repo() {
+				echo "$*" | cut -d / -f 2- | cut -d : -f 1
+			}
+			pkg_site() {
+				echo "$*" | cut -d / -f 1
+			}
 
 			PACKAGES=" "
+			PACKAGES_AUR=()
 			NOPACKAGES=
 			for pkg in $(package_contents "$ROOT/pacman"); do
 				if [[ "$pkg" = '!'* ]]; then
 					NOPACKAGES="$NOPACKAGES ${pkg:1:${#pkg}}"
-				elif ! pacman -Qq $pkg > /dev/null 2>&1; then
-					PACKAGES="$PACKAGES $pkg"
+				elif ! pacman -Qq $(pkg_name $pkg) > /dev/null 2>&1; then
+					if [[ "$pkg" = */* ]]; then
+						PACKAGES_AUR+=("$pkg")
+					else
+						PACKAGES="$PACKAGES $pkg"
+					fi
 				fi
 			done
 			for pkg in $NOPACKAGES; do
@@ -296,13 +317,18 @@ case $COMMAND in
 			PACKAGES=$(echo "$PACKAGES" | sed -e "s/ +/ /g" -e "s/^ $//")
 
 			if [ -n "$PACKAGES" ]; then
-				yes | pacman -Sy --needed  --noprogressbar $PACKAGES
+				yes | pacman -Sy --needed --noprogressbar $PACKAGES
 			fi
 
 			RET=0
-			for pkg in $(package_contents "$ROOT/pacman/aur"); do
-				pacman -Qq $pkg > /dev/null 2>&1 ||
-					"$ROOT/pacman/aur/install.sh" $pkg || RET=$?
+			for pkg in ${PACKAGES_AUR[@]+"${PACKAGES_AUR[@]}"}; do
+				PKG_SITE=$(pkg_site "$pkg")
+				PKG_REPO=$(pkg_repo "$pkg")
+				if [[ "$PKG_SITE" = aur ]]; then
+					"$ROOT/bin/install-aur.sh" "$PKG_REPO" || RET=$?
+				else # github repo slug assumed
+					"$ROOT/bin/install-github.sh" "$PKG_SITE/$PKG_REPO" || RET=$?
+				fi
 			done
 
 			exit $RET

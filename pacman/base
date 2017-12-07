@@ -44,3 +44,14 @@ rxvt-unicode-terminfo
 lsb-release
 rng-tools
 systemd-swap
+
+aur/trizen
+aur/apacman
+
+aur/yq
+aur/rar
+aur/git-crypt
+aur/lastpass-cli
+
+aur/vundle-git
+aur/kotlin-vim

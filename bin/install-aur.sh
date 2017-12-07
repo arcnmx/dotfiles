@@ -10,7 +10,7 @@ fi
 
 PACKAGE="$1"
 URL="https://aur.archlinux.org/cgit/aur.git/snapshot/$PACKAGE.tar.gz"
-DIR=`mktemp -d`
+DIR=$(mktemp -d)
 
 cleanup() {
 	cd /

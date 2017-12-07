@@ -16,3 +16,7 @@ parted
 rtorrent
 task
 ncmpcpp
+
+aur/physlock
+aur/pass-otp
+aur/pass-update
