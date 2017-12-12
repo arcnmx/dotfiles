@@ -5,7 +5,7 @@ Things to do on a new OS X machine.
 ## Applications
 
 - [Firefox](https://www.mozilla.org/en-US/firefox)
-- [XVim](https://github.com/XVimProject/XVim.git)
+- [XVim2](https://github.com/XVimProject/XVim2.git)
 - App Store
     - Xcode
 
@@ -43,7 +43,6 @@ Things to do on a new OS X machine.
     - Automatically balance brackets in Objective-C method calls
     - Automatically trim trailing whitespace
         - Including whitespace-only lines
-- Sidebar
     - Indent Using
 
 ### Finder
