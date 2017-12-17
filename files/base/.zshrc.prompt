@@ -97,7 +97,10 @@ if [[ -n "${ARC_PROMPT_RUN-}" ]]; then
 				print -s "$BUFFER"
 			fi
 
-			# expand aliases
+			# expand aliases (only operates on current word)
+			# move cursor to first word, skip leading whitespace
+			zle beginning-of-line
+			zle vi-forward-blank-word-end
 			zle _expand_alias
 
 			# run process in bg, check if it exits within a short timeframe
