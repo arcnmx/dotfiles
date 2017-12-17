@@ -84,6 +84,8 @@ filetype off
 call vundle#begin()
 Plugin 'tpope/vim-dispatch'
 Plugin 'cespare/vim-toml'
+" Plugin 'bumaociyuan/vim-swift'
+Plugin 'keith/swift.vim'
 Plugin 'rust-lang/rust.vim'
 Plugin 'arcnmx/notmuch-vim'
 Plugin 'altercation/vim-colors-solarized'
