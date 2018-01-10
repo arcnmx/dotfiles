@@ -1,0 +1,4 @@
+#!/bin/bash
+
+systemctl start bluetooth
+connmanctl disable wifi
