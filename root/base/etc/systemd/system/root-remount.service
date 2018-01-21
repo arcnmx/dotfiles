@@ -8,4 +8,4 @@ Wants=local-fs-pre.target
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/usr/bin/mount -oremount,rw,strictatime,lazytime,user_subvol_rm_allowed,compress=lzo,ssd,space_cache,subvol=/root /
+ExecStart=/usr/bin/mount -oremount,rw,strictatime,lazytime,user_subvol_rm_allowed,compress=zstd,ssd,space_cache,subvol=/root /
