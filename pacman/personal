@@ -21,4 +21,5 @@ aur/physlock
 aur/pass-otp
 aur/pass-update
 
-aur/ledger
+aur/ledger-git
+aur/vim-ledger-git
