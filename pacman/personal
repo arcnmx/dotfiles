@@ -5,7 +5,6 @@ bluez
 bluez-utils
 ntfs-3g
 connman
-watchdog
 efibootmgr
 intel-ucode
 pass
@@ -17,6 +16,7 @@ rtorrent
 task
 ncmpcpp
 
+aur/watchdog
 aur/physlock
 aur/pass-otp
 aur/pass-update
