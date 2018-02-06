@@ -18,9 +18,6 @@ fi
 URL="https://github.com/$SLUG/archive/$BRANCH.tar.gz"
 DIR=$(mktemp -d)
 
-echo "$URL"
-exit 1
-
 cleanup() {
 	cd /
 	rm -rf "$DIR"
