@@ -2,8 +2,9 @@
 
 My settings and things.
 
+    $ pacman -S base-devel git git-crypt
     $ curl -sSfL https://raw.githubusercontent.com/arcnmx/dotfiles/master/bin/download.sh | sh -s -- -h
-    $ ~/.dotfiles/dot.sh newuser arc wheel,audio,uucp
+    $ ~/.dotfiles/dot.sh newuser arc wheel,audio,uucp,disk,input,kvm
 
 ## OS X
 
