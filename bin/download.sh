@@ -68,3 +68,4 @@ if [ -n "$OPT_SETUP_TYPE" ]; then
 	crypt_unlock # we maybe just installed a system-wide git-crypt
 fi
 ./dot.sh update
+./dot.sh keygen

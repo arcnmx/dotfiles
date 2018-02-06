@@ -270,8 +270,6 @@ case $COMMAND in
 			chsh -s "$(zsh_shells | head -n 1)" "$USER"
 		fi
 
-		"$INSTALL" keygen
-
 		;;
 	update-system)
 		if [ -n "$IS_OSX" ]; then
@@ -420,6 +418,7 @@ case $COMMAND in
 
 		sudo -Hu "$USERNAME" "$INSTALL_ROOT/dot.sh" crypt-unlock
 		sudo -Hu "$USERNAME" "$INSTALL_ROOT/dot.sh" update
+		sudo -Hu "$USERNAME" "$INSTALL_ROOT/dot.sh" keygen
 		;;
 	setup)
 		if [ $# -lt 1 ]; then
