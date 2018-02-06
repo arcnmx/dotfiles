@@ -242,7 +242,9 @@ case $COMMAND in
 					link_files "$dir" "$HOME"
 				fi
 			done
-			echo | vim +PluginInstall +qall > /dev/null 2>&1
+			if which vim > /dev/null 2>&1; then
+				echo | vim +PluginInstall +qall > /dev/null 2>&1
+			fi
 		else
 			echo "WARNING: not updating dotfiles, $USER is not owner" >&2
 		fi
