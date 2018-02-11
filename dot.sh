@@ -180,6 +180,7 @@ git_update() {
 		(cd "$DIR" && git pull -q --ff-only) || true
 	else
 		git clone "${ARGS[@]}" "$URI" "$DIR"
+		(cd "$DIR" && git submodule update --init --recursive)
 	fi
 }
 
@@ -229,6 +230,8 @@ case $COMMAND in
 		fi
 
 		git_update https://github.com/arcnmx/weechat-vimode.git "$HOME/.weechat/weechat-vimode" prefs
+		git_update https://github.com/arcnmx/getquote-alphavantage.git "$HOME/.bin/_/getquote-alphavantage"
+		git_update https://github.com/arcnmx/qemucomm.git "$HOME/.bin/_/qemucomm"
 		git_update https://github.com/arcnmx/luakit-pass.git "$HOME/.config/luakit/pass"
 		git_update https://github.com/arcnmx/luakit-paste.git "$HOME/.config/luakit/paste"
 		git_update https://github.com/arcnmx/luakit-unique_instance.git "$HOME/.config/luakit/unique_instance"
