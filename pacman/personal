@@ -16,7 +16,6 @@ rtorrent
 task
 ncmpcpp
 
-aur/watchdog
 aur/physlock
 aur/pass-otp
 aur/pass-update
