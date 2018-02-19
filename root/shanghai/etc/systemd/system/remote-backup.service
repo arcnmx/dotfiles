@@ -8,6 +8,7 @@ User=arc
 Type=oneshot
 ExecStart=/mnt/data/backup/rolling/working/git/update
 ExecStart=/mnt/data/backup/rolling/working/gmail/update
+ExecStart=/mnt/data/backup/rolling/working/mail/notmuch-dump/update_dump
 
 [Install]
 WantedBy=multi-user.target
