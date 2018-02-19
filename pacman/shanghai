@@ -33,6 +33,3 @@ aur/backblaze-b2
 aur/python-rtslib-fb
 aur/taskd
 aur/lua51-event
-
-arcnmx/arch-ovmf-git-macboot:ovmf-git-macboot
-arcnmx/arch-qemu-git:qemu-headless-git

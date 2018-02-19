@@ -1,0 +1,3 @@
+arcnmx/arch-ovmf-git-macboot:ovmf-git-macboot
+arcnmx/arch-qemu-git:qemu-headless-git
+arcnmx/arch-forcefully-remove-bootfb-dkms:forcefully-remove-bootfb-dkms
