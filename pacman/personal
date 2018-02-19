@@ -8,6 +8,7 @@ connman
 efibootmgr
 intel-ucode
 pass
+aws-cli
 
 smartmontools
 gptfdisk
