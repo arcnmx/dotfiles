@@ -1,0 +1,5 @@
+nvidia-dkms
+nvidia-settings
+opencl-nvidia
+xf86-video-nouveau
+libvdpau
