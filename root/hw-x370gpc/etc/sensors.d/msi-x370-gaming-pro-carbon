@@ -17,12 +17,12 @@ chip "nct6795-isa-0a20"
 	label in12 "SoC" # "CPU NB"  on hwinfo64
 	# label in13 "VIN6" # on hwinfo64
 	# label in13 "VIN7" # on hwinfo64
-	label fan1 "Pump Fan"
+	label fan1 "Rear Fan" # "Pump Fan"
 	label fan2 "CPU Fan"
-	label fan3 "Case Fan 1"
-	label fan4 "Case Fan 2"
-	label fan5 "Case Fan 3"
-	label fan6 "Case Fan 4"
+	label fan3 "Top Exhaust" # "Case Fan 1"
+	label fan4 "Front Fan" # "Case Fan 2"
+	label fan5 "Top Intake" # "Case Fan 3"
+	label fan6 "Front Fan" # "Case Fan 4"
 	label temp7 "Core"
 	label temp1 "Motherboard"
 	label temp2 "CPU"
