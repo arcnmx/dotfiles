@@ -46,7 +46,6 @@ systemd-swap
 git-crypt
 
 aur/trizen
-aur/apacman
 
 aur/yq
 aur/rar
