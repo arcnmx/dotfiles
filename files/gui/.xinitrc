@@ -1,8 +1,5 @@
 #!/bin/sh
-#
-# ~/.xinitrc
-#
-# Executed by startx (run your window manager from here)
+
 set -e
 
 xrdb -merge -I$HOME ~/.Xresources
