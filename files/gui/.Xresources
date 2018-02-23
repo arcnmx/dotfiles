@@ -38,7 +38,7 @@ Xft.lcdfilter: lcddefault
 
 #define SIZE_SMALL 8
 #define SIZE_NORMAL 9
-#define SIZE_LARGE 26
+#define SIZE_LARGE 12
 #define FONT(sz, sty) xft:Droid Sans Mono Dotted-sz:sty,xft:Symbola-sz
 #define BOLD weight=200
 #define ITALIC slant=110
