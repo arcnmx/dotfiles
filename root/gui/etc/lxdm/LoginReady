@@ -1,0 +1,3 @@
+#!/bin/sh
+
+XAUTHORITY="/var/run/lxdm/lxdm-$DISPLAY.auth" /root/.bin/konawall &

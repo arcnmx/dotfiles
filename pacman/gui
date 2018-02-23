@@ -43,6 +43,9 @@ ttf-droid
 
 libreoffice-fresh
 
+lxdm
+aur/xinit-xsession
+
 aur/ttf-droid-monovar
 aur/ttf-courier-prime
 aur/ttf-heuristica
