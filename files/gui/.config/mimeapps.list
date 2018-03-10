@@ -1,0 +1,11 @@
+
+[Default Applications]
+text/html=luakit.desktop
+x-scheme-handler/http=luakit.desktop
+x-scheme-handler/https=luakit.desktop
+image/jpeg=feh.desktop
+image/png=feh.desktop
+image/gif=feh.desktop
+application/pdf=epdfview.desktop
+text/plain=vim.desktop
+application/xml=vim.desktop

@@ -14,9 +14,11 @@ alias sys='systemctl'
 alias log='journalctl'
 
 alias dmesg='dmesg -HP'
+alias grep='grep --color=auto'
 
 alias make='make -j$ARC_CPUS'
 alias tmain='tmux att -t main'
+alias open='xdg-open'
 
 alias y='trizen'
 
