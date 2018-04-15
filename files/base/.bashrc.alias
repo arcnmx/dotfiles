@@ -19,6 +19,7 @@ alias grep='grep --color=auto'
 alias make='make -j$ARC_CPUS'
 alias tmain='tmux att -t main'
 alias open='xdg-open'
+alias clear='clear && printf '"'"'\e[3J'"'"
 
 alias y='trizen'
 
