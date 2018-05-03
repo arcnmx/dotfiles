@@ -23,8 +23,8 @@ setopt inc_append_history
 setopt nosharehistory
 alias history='fc -il 1'
 HISTFILE=$HOME/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=100000
+SAVEHIST=100000
 
 autoload -Uz compinit
 compinit -u
