@@ -1,13 +1,16 @@
 #!/bin/bash
 set -eu
+set -o pipefail
 
 urls() {
 	local LIMIT=$1
 	shift
 	local TAGS=$*
 
-	curl -fSsLG -d "limit=$LIMIT" -d "tags=$TAGS" http://konachan.com/post.xml 2> /dev/null |
-		grep -o 'file_url="[^"]*"' | grep -o '//[^"]*' | sed -e 's/^/http:/'
+	local URL="https://konachan.com/post.json?limit=$LIMIT&tags=$TAGS"
+	URLS=$(curl -fSsLG "$URL" 2> /dev/null | jq -r '.[].file_url')
+	echo "$URLS" >&2 # for logging
+	echo "$URLS"
 }
 
 if [ -z "${KONATAGS-}" ]; then
