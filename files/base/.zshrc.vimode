@@ -23,3 +23,6 @@ bindkey -M menuselect "j" down-line-or-history
 bindkey -M menuselect "l" forward-char
 bindkey -M menuselect "h" backward-char
 bindkey -M menuselect "^[" undo
+
+# silence bell when pressing escape too much
+bindkey -M vicmd -s "\e" ''

@@ -67,6 +67,8 @@ let g:notmuch_sendmail_param={
 \ 'location': '/usr/bin/msmtp',
 \}
 
+" prevent bell on escape key presses
+set noerrorbells visualbell t_vb=
 
 " Don't use Ex mode, use Q for formatting
 map Q gq

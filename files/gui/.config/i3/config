@@ -38,9 +38,9 @@ floating_modifier $mod
 
 bindsym $mod+shift+r reload
 
-bindsym XF86AudioLowerVolume exec amixer set Master playback 5- && pkill -USR1 i3status
-bindsym XF86AudioRaiseVolume exec amixer set Master playback 5+ && pkill -USR1 i3status
-bindsym XF86AudioMute exec amixer set Master playback toggle && pkill -USR1 i3status
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -USR1 i3status
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -USR1 i3status
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -USR1 i3status
 
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
