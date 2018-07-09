@@ -1,6 +1,7 @@
 i7z
 acpi
 alsa-utils
+alsa-plugins
 bluez
 bluez-utils
 ntfs-3g

@@ -43,6 +43,10 @@ ttf-droid
 
 libreoffice-fresh
 
+pulseaudio
+aur/apulse
+aur/paswitch
+
 lxdm
 aur/xinit-xsession
 
@@ -55,6 +59,5 @@ aur/fonts-meta-base
 
 aur/google-talkplugin
 aur/flashplayer-standalone
-aur/apulse
 
 arcnmx/arch-gtk3-arc:gtk3-arc
