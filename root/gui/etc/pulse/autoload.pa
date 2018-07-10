@@ -57,15 +57,11 @@ load-module module-filter-apply
 load-sample x11-bell /usr/share/sounds/freedesktop/stereo/message.oga
 load-module module-x11-bell sample=x11-bell display=:0
 
-load-module module-mmkbd-evdev
-
 load-module module-x11-publish display=:0
 
 load-module module-allow-passthrough
 
 load-module module-role-ducking
-
-load-module module-virtual-surround-sink sink_name=vsurround sink_master=alsa_output.usb-C-Media_Electronics_Inc._USB_Audio_Device-00.analog-stereo hrir=/etc/pulse/hrir_kemar/hrir-kemar.wav
 
 # TODO: https://wiki.archlinux.org/index.php/PulseAudio/Troubleshooting#Enable_Echo.2FNoise-Cancellation
 
