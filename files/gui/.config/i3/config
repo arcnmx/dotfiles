@@ -121,6 +121,17 @@ bindsym $mod+shift+8 move container to workspace 8
 bindsym $mod+shift+9 move container to workspace 9
 bindsym $mod+shift+0 move container to workspace 10
 
+bindsym $mod+control+1 exec _i3workspaceoutput 1 current
+bindsym $mod+control+2 exec _i3workspaceoutput 2 current
+bindsym $mod+control+3 exec _i3workspaceoutput 3 current
+bindsym $mod+control+4 exec _i3workspaceoutput 4 current
+bindsym $mod+control+5 exec _i3workspaceoutput 5 current
+bindsym $mod+control+6 exec _i3workspaceoutput 6 current
+bindsym $mod+control+7 exec _i3workspaceoutput 7 current
+bindsym $mod+control+8 exec _i3workspaceoutput 8 current
+bindsym $mod+control+9 exec _i3workspaceoutput 9 current
+bindsym $mod+control+0 exec _i3workspaceoutput 0 current
+
 bindsym $mod+b splith
 bindsym $mod+v splitv
 
