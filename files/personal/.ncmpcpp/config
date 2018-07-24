@@ -1,7 +1,7 @@
 mpd_host = shanghai.gensokyo.cutie.moe
 data_fetching_delay = no
 playlist_disable_highlight_delay = 0
-mouse_support = no
+mouse_support = yes
 mouse_list_scroll_whole_page = no
 cyclic_scrolling = no
 seek_time = 10
