@@ -1,0 +1,6 @@
+#!/bin/bash
+
+systemctl restart usbmuxd
+connmanctl disable wifi
+sleep 2.5
+connmanctl connect ethernet_f2796070f331_cable
