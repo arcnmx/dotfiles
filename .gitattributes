@@ -11,7 +11,7 @@
 /files/*/.notmuch/** filter=git-crypt diff=git-crypt
 /files/*/.notmuch-config filter=git-crypt diff=git-crypt
 /root/*/etc/ddclient/ddclient.conf filter=git-crypt diff=git-crypt
-/root/*/etc/.btsync.conf filter=git-crypt diff=git-crypt
+/root/*/etc/.rslsync.conf filter=git-crypt diff=git-crypt
 /root/*/etc/snapper/** filter=git-crypt diff=git-crypt
 /root/*/etc/bitlbee/** filter=git-crypt diff=git-crypt
 /root/*/etc/ipsec.d/** filter=git-crypt diff=git-crypt
