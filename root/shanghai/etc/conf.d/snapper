@@ -1,3 +1,3 @@
 SNAPPER_CONFIGS="backup-transient bitlbee znc gitolite"
-SNAR_CONFIGS="backup-rolling-archdrop backup-rolling-gmail-bu backup-rolling-gmail-arc backup-rolling-gmail-ae backup-rolling-git-bu backup-rolling-git-fl backup-rolling-git-ark backup-rolling-git-rc backup-rolling-iphone taskd prosody mail letsencrypt"
+SNAR_CONFIGS="backup-rolling-archdrop backup-rolling-gmail-bu backup-rolling-gmail-arc backup-rolling-gmail-ae backup-rolling-git-bu backup-rolling-git-fl backup-rolling-git-fr backup-rolling-git-ark backup-rolling-git-rc backup-rolling-iphone taskd prosody mail letsencrypt"
 SNAR_KEY="7F2BE4D7D4141ADEB85DEBCAB5E4DD3D11684772"
