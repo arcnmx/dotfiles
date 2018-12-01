@@ -1,3 +1,0 @@
-[Service]
-Type=oneshot
-ExecStart=/usr/bin/zenstates -p 0 -f 9e -d 8 -v 1e
