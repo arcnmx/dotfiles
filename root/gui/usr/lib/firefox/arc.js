@@ -9,3 +9,5 @@ try {
 let env = Components.classes["@mozilla.org/process/environment;1"].getService(Components.interfaces.nsIEnvironment);
 lockPref("browser.download.dir", env.get("HOME") + "/downloads");
 lockPref("services.sync.client.name", env.get("HOSTNAME"));
+lockPref("layers.acceleration.force-enabled", true);
+lockPref("gfx.canvas.azure.accelerated", true);
