@@ -17,9 +17,15 @@ alias dmesg='dmesg -HP'
 alias grep='grep --color=auto'
 
 alias make='make -j$ARC_CPUS'
+alias tnew='tmux new -s'
+alias tatt='tmux att -t'
 alias tmain='tmux att -t main'
+alias t3='tmux att -t 3s'
 alias open='xdg-open'
 alias clear='clear && printf '"'"'\e[3J'"'"
+
+alias task3s='task rc.context:3s'
+alias taskwork='task rc.context:work'
 
 alias y='trizen'
 
@@ -41,7 +47,17 @@ else
 fi
 # alias web='chromium --process-per-site'
 
-alias mpa='mpv --no-video'
+mpa() {
+	PULSE_PROP="media.role=music" command mpv --no-video "$@"
+}
+
+mpv() {
+	PULSE_PROP="media.role=video" command mpv "$@"
+}
+
+discord() {
+	PULSE_PROP="media.role=phone" command discord "$@" &
+}
 
 function dict() {
 	curl "dict://dict.org/$1:$2"
