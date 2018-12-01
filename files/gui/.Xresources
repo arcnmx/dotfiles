@@ -4,6 +4,8 @@ URxvt.tabbed.tabbar-bg: 0
 URxvt.tabbed.tab-fg: 3
 URxvt.tabbed.tab-bg: 0
 
+#include ".Xresources.urxvt"
+
 !URxvt.termName: rxvt-unicode
 URxvt.saveLines: 16384
 URxvt.visualBell: false
