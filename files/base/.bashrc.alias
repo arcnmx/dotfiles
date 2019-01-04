@@ -68,7 +68,11 @@ function cargo-target-dir() {
 }
 
 function cargo() {
-	CARGO_TARGET_DIR="$(cargo-target-dir)" command cargo "$@"
+	if [[ -n "${CARGO_TARGET_DIR-}" ]]; then
+		command cargo "$@"
+	else
+		CARGO_TARGET_DIR="$(cargo-target-dir)" command cargo "$@"
+	fi
 }
 
 if [ -n "$ARC_OSX" ]; then
