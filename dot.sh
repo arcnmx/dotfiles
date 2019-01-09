@@ -404,8 +404,9 @@ case $COMMAND in
 			REMOTE_URL="$(git remote get-url "$(git remote)")"
 			REMOTE_PUSH_URL="$(git remote get-url --push "$(git remote)")"
 			sudo -Hu "$USERNAME" git clone -q . "$INSTALL_ROOT"
-			cp ./.crypt/key "$INSTALL_ROOT/.crypt/"
-			chown "$USERNAME":users "$INSTALL_ROOT/.crypt/key"
+			if [[ -f ./.crypt/key ]]; then
+				install -o "$USERNAME" -g users ./.crypt/key "$INSTALL_ROOT/.crypt/"
+			fi
 			cd "$INSTALL_ROOT"
 			sudo -Hu "$USERNAME" git remote set-url origin "$REMOTE_URL"
 			sudo -Hu "$USERNAME" git remote set-url --push origin "$REMOTE_PUSH_URL"
@@ -421,7 +422,9 @@ case $COMMAND in
 			)
 		fi
 
-		sudo -Hu "$USERNAME" "$INSTALL_ROOT/dot.sh" crypt-unlock
+		if [[ -f ./.crypt/key ]]; then
+			sudo -Hu "$USERNAME" "$INSTALL_ROOT/dot.sh" crypt-unlock
+		fi
 		sudo -Hu "$USERNAME" "$INSTALL_ROOT/dot.sh" update
 		sudo -Hu "$USERNAME" "$INSTALL_ROOT/dot.sh" keygen
 		;;
