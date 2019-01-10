@@ -1,4 +1,4 @@
-coreutils mdadm bash bzip2 coreutils cryptsetup device-mapper dhcpcd diffutils e2fsprogs file filesystem findutils gawk gettext glibc grep gzip inetutils iproute2 iputils jfsutils less licenses linux logrotate lvm2 man-db man-pages netctl pacman pciutils pcmciautils perl procps-ng psmisc reiserfsprogs s-nail sed shadow sysfsutils tar texinfo usbutils util-linux vi which xfsprogs
+coreutils mdadm bash bzip2 coreutils cryptsetup device-mapper dhcpcd diffutils e2fsprogs file filesystem findutils gawk gettext glibc grep gzip inetutils iproute2 iputils jfsutils less licenses linux logrotate lvm2 man-db man-pages netctl pacman pciutils perl procps-ng psmisc reiserfsprogs s-nail sed shadow sysfsutils tar texinfo usbutils util-linux vi which xfsprogs
 autoconf automake binutils bison fakeroot flex groff libtool m4 make patch pkg-config sudo
 linux-headers
 
@@ -49,6 +49,5 @@ aur/trizen
 
 aur/yq
 aur/rar
-aur/lastpass-cli
 
 aur/vundle-git
