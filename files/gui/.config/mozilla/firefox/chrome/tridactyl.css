@@ -1,0 +1,26 @@
+#titlebar {
+  display: none !important;
+}
+
+#navigator-toolbox:not(:hover):not(:focus-within) #toolbar-menubar > * {
+  background-color: rgb(232, 232, 231);
+}
+
+#main-window[sizemode="maximized"] #content-deck {
+  padding-top: 8px;
+}
+
+statuspanel[type="overLink"],
+#statuspanel[type="overLink"] {
+  right: 0;
+  display: inline;
+}
+
+tabs {
+  counter-reset: tab-counter;
+}
+
+.tab-label::before {
+  counter-increment: tab-counter;
+  content: counter(tab-counter) ": ";
+}

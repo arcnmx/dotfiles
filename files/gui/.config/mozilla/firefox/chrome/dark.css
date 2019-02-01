@@ -1,0 +1,60 @@
+toolbox {
+    background-color: #000 !important;
+    color: #AAAAAA;
+}
+
+#TabsToolbar {
+    background-color: #000000 !important;
+}
+
+#nav-bar {
+    background-color: black !important;
+}
+
+#nav-bar-overflow-button {
+    fill: #ddd !important;
+}
+
+.tabbrowser-tab::after,
+.tabbrowser-tab::before {
+    border-left: none !important;
+    color: grey !important;
+    opacity: .2 !important;
+	width: 2px;
+}
+
+/* New tab button color */
+
+#new-tab-button,
+.tabs-newtab-button {
+    fill: var(--chrome-color) !important;
+}
+
+/* tab line - adjust color & size, default #0a84ff 2px */
+
+.tab-line {
+    background-color: #0a84ff !important;
+    height: 0px !important;
+}
+
+tab[visuallyselected="true"] {
+    background-color: #020202 !important;
+}
+
+#urlbar,
+.searchbar-textbox,
+#urlbar:hover,
+.searchbar-textbox:hover {
+    background: #333 !important;
+    color: white !important;
+}
+
+:root:not([uidensity="compact"]) :not(tab[visuallyselected="true"]) .tab-content {
+    background-color: black !important;
+    color: #aaaaaa !important;
+}
+
+:root:not([uidensity="compact"]) tab[visuallyselected="true"] .tab-content {
+    background-color: #444444 !important;
+    color: #c0c0c0 !important;
+}

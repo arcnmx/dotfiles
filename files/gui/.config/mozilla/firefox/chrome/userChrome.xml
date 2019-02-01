@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<bindings xmlns="http://www.mozilla.org/xbl">
+  <binding id="noflex">
+    <implementation>
+      <constructor><![CDATA[
+this.removeAttribute("flex");
+      ]]></constructor>
+    </implementation>
+  </binding>
+</bindings>

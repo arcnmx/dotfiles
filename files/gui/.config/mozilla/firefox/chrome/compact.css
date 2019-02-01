@@ -1,0 +1,183 @@
+:root {
+	--toolbar-height: 6mm;
+    --tabs-border: transparent !important;
+    /* active tab left & right borders - not working in 58?*/
+    --toolbox-border-bottom-color: transparent !important;
+    /* 1px line under background tabs */
+    --chrome-nav-bar-controls-border-color: transparent !important;
+    /* border around url bar */
+}
+
+:root:-moz-any([inFullscreen], [tabsintitlebar]) #TabsToolbar:not(:-moz-lwtheme) { -moz-appearance: none !important; }
+#TabsToolbar {
+    margin-bottom: 0px !important;
+    margin-top: 0px !important;
+    margin-left: 35vw !important;
+    margin-right: 0px !important;
+    max-height: var(--toolbar-height) !important;
+    height: var(--toolbar-height) !important;
+}
+
+#tabbrowser-tabs {
+    z-index: 2 !important;
+    min-height: var(--toolbar-height) !important;
+}
+
+.tabbrowser-arrowscrollbox {
+    min-height: var(--toolbar-height) !important;
+}
+
+#nav-bar {
+    margin-bottom: 0px !important;
+    margin-top: calc(-1 * var(--toolbar-height)) !important;
+    margin-left: 0px !important;
+    margin-right: 65vw !important;
+    border-top: none !important;
+    max-height: var(--toolbar-height) !important;
+    height: var(--toolbar-height) !important;
+}
+
+#main-window[sizemode="normal"]>#titlebar {
+    -moz-appearance: initial !important;
+}
+
+#navigator-toolbox { /* move toolbar to bottom */
+  -moz-box-ordinal-group: 2 !important;
+}
+
+#back-button,
+#forward-button,
+#stop-reload-button,
+#PanelUI-button,
+#home-button,
+#customizableui-special-spring1,
+#customizableui-special-spring2,
+#library-button,
+#downloads-button,
+#sidebar-button,
+#new-tab-button,
+#alltabs-button,
+.scrollbutton-up,
+.scrollbutton-down,
+.tabs-newtab-button,
+#star-button,
+#statuspanel,
+.urlbar-icon.urlbar-page-action,
+.titlebar-placeholder {
+    display: none !important;
+}
+
+#back-button>.toolbarbutton-icon,
+#forward-button>.toolbarbutton-icon {
+    transform: scale(0.9, 0.9) !important;
+    margin-left: -2px !important;
+    margin-right: -2px !important;
+}
+
+#PanelUI-button,
+#customization-panel-container,
+#customization-panelWrapper .panel-arrow {
+    -moz-box-ordinal-group: 0 !important;
+    margin-right: -6px !important;
+}
+
+#appMenu-popup {
+    margin-right: -258px !important;
+}
+
+#appMenu-popup .panel-arrow {
+    margin-right: 248px !important;
+}
+
+#nav-bar-overflow-button {
+    transform: scale(0.9, 0.9) !important;
+}
+
+.tabbrowser-tab {
+    height: 28px !important;
+}
+
+/* tab line - adjust size, default 2px */
+
+.tab-line {
+    height: 0px !important;
+}
+
+/* Hide various elements */
+
+
+/* Menu */
+
+#appMenu-fxa-container,
+
+/* Sign in to Sync */
+
+#appMenu-fxa-container+toolbarseparator,
+
+/* #appMenuRestoreLastSession, */
+
+#appMenu-zoom-controls,
+#appMenu-zoom-controls+toolbarseparator,
+#appMenu-edit-controls,
+#appMenu-edit-controls+toolbarseparator,
+#appMenu-library-button,
+#appMenu-customize-button,
+#appMenu-customize-button+toolbarseparator,
+#appMenu-open-file-button,
+#appMenu-save-file-button,
+#appMenu-find-button,
+#appMenu-more-button,
+
+/* URL Bar */
+#urlbar[focused="true"],
+#urlbar:hover, .searchbar-textbox:hover {
+    box-shadow: 0 0 0 !important;
+    border: 0 solid transparent !important;
+}
+
+#urlbar,
+.searchbar-textbox,
+#urlbar:hover,
+.searchbar-textbox:hover {
+    height: var(--toolbar-height) !important;
+    min-height: var(--toolbar-height) !important;
+    padding: 0 0 !important;
+    font-size: 0.8em !important;
+    border-radius: 0 !important;
+    outline: none !important;
+    box-shadow: 0 0 0;
+    border: 0 solid transparent !important;
+    -moz-appearance: none;
+    margin: 0 0 !important;
+    cursor: default;
+}
+
+#pageActionButton,
+#pocket-button-box,
+ar-button,
+.autocomplete-history-dropmarker,
+#identity-box,
+.urlbar-history-dropmarker.urlbar-icon.chromeclass-toolbar-additional,
+#TabsToolbar .titlebar-placeholder[type="pre-tabs"],
+#page-action-buttons,
+#PanelUI-menu-button,
+#identity-icon-labels {
+    display: none !important;
+}
+
+#nav-bar-customization-target {
+    /*-moz-binding: url(userChrome.xml#noflex);*/
+}
+
+
+:root:not([uidensity="compact"]) .tab-content {
+    font-size: 0.8em !important;
+    padding: 0 10px;
+    border: 0;
+}
+
+
+.CodeMirror {
+    font-family:    "Droid Sans Mono Dotted", monospace !important;
+    font-size:      15pt !important;
+}

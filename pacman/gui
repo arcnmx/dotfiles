@@ -60,4 +60,8 @@ aur/fonts-meta-base
 aur/google-talkplugin
 aur/flashplayer-standalone
 
+aur/tridactyl-native-git
+aur/passff-host
+aur/browserpass-bin
+
 arcnmx/arch-gtk3-arc:gtk3-arc
