@@ -6,8 +6,10 @@ try {
 } catch(ex) {}
 
 // default preferences
-let env = Components.classes["@mozilla.org/process/environment;1"].getService(Components.interfaces.nsIEnvironment);
-lockPref("browser.download.dir", env.get("HOME") + "/downloads");
-lockPref("services.sync.client.name", env.get("HOSTNAME"));
+lockPref("browser.download.dir", getenv("HOME") + "/downloads");
+lockPref("services.sync.client.name", getenv("HOSTNAME"));
+lockPref("gfx.webrender.all.qualified", true);
 lockPref("layers.acceleration.force-enabled", true);
 lockPref("gfx.canvas.azure.accelerated", true);
+lockPref("browser.ctrlTab.recentlyUsedOrder", false);
+lockPref("general.smoothScroll", false); // this might not be so bad but...
