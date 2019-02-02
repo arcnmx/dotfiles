@@ -2,8 +2,11 @@
 Name=br
 
 [Network]
-DHCP=ipv4
+#DHCP=ipv4
 IPForward=yes
+
+DNS=1.0.0.1
+DNS=9.9.9.10
 
 Address=10.1.1.32/24
 Gateway=10.1.1.1

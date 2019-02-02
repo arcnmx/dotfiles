@@ -1,5 +1,6 @@
 [Match]
 MACAddress=4c:cc:6a:f9:3d:ad
+Path=pci-0000:17:00.0
 
 [Link]
 Name=eth
