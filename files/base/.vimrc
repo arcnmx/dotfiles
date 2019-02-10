@@ -122,6 +122,11 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
+if !exists(":now")
+  command Now call setline(line('.'), getline('.') . substitute(system('date -Iseconds'), '[\]\|[[:cntrl:]]', '', 'g'))
+  cnoreabbrev now Now
+endif
+
 colorscheme solarized
 " call togglebg#map("<F5>")
 
