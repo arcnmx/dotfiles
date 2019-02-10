@@ -1,7 +1,0 @@
-[Unit]
-After=connman.service
-
-[Service]
-Type=simple
-Restart=always
-ExecStart=/root/.bin/_/ipsecmon
