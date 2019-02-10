@@ -26,6 +26,9 @@ alias clear='clear && printf '"'"'\e[3J'"'"
 
 alias task3s='task rc.context:3s'
 alias taskwork='task rc.context:work'
+tasks() {
+	task next rc.defaultheight=$LINES rc.defaultwidth=$COLUMNS rc._forcecolor=yes limit:0 "$@" | less
+}
 
 alias y='trizen'
 
