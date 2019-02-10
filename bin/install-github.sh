@@ -27,4 +27,4 @@ trap cleanup EXIT
 
 cd "$DIR"
 curl -L "$URL" | tar xz --strip-components=1
-yes | env EUID=1 makepkg -si
+yes | env EUID=1 makepkg -si --nocheck

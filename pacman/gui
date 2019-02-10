@@ -60,6 +60,7 @@ aur/fonts-meta-base
 aur/google-talkplugin
 aur/flashplayer-standalone
 
+aur/luakit-git
 aur/tridactyl-native-git
 aur/passff-host
 aur/browserpass-bin
