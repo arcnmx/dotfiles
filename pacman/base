@@ -18,6 +18,7 @@ git
 mosh
 nbd
 net-tools
+nftables
 ntp
 openssh
 vim
