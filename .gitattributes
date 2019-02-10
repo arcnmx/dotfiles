@@ -10,6 +10,8 @@
 /files/*/.task/*.pem filter=git-crypt diff=git-crypt
 /files/*/.notmuch/** filter=git-crypt diff=git-crypt
 /files/*/.notmuch-config filter=git-crypt diff=git-crypt
+/files/*/.ncmpcpp/config filter=git-crypt diff=git-crypt
+/root/*/etc/mpd.conf filter=git-crypt diff=git-crypt
 /root/*/etc/ddclient/ddclient.conf filter=git-crypt diff=git-crypt
 /root/*/etc/.rslsync.conf filter=git-crypt diff=git-crypt
 /root/*/etc/snapper/** filter=git-crypt diff=git-crypt
