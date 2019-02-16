@@ -9,7 +9,8 @@ for_window [title="^run$"] floating enable
 for_window [title="^pinentry$"] floating enable
 # no_focus [title="luakit"]
 
-exec_always konawall
+exec_always --no-startup-id konawall
+exec --no-startup-id i3gopher
 
 set $alt Mod1
 set $logo Mod4
@@ -38,23 +39,24 @@ floating_modifier $mod
 
 bindsym $mod+shift+r reload
 
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -USR1 i3status
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -USR1 i3status
-bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -USR1 i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -USR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -USR1 i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -USR1 i3status
 
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10
-bindsym --release $mod+p exec sleep 0.2 && xset dpms force off
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
+bindsym --release $mod+p exec --no-startup-id sleep 0.2 && xset dpms force off
 
 # vm hotkeys
-bindsym --release KP_Divide exec vm unseat
-bindsym --release KP_Multiply exec vm seat
+bindsym --release KP_Divide exec --no-startup-id vm unseat
+bindsym --release KP_Multiply exec --no-startup-id vm seat
 
 # bindsym --release $mod+bracketleft exec physlock -dms
-bindsym --release $mod+bracketleft exec sleep 0.2 && xset dpms force off && i3lock -e -u -c 111111
+bindsym --release $mod+bracketleft exec --no-startup-id sleep 0.2 && xset dpms force off && i3lock -e -u -c 111111
 
 bindsym $mod+shift+Escape exit
 
+bindsym $mod+tab exec --no-startup-id i3gopher --focus-last
 bindsym $mod+a focus parent
 bindsym $mod+q focus child
 #bindsym $mod+n focus next
@@ -121,16 +123,16 @@ bindsym $mod+shift+8 move container to workspace 8
 bindsym $mod+shift+9 move container to workspace 9
 bindsym $mod+shift+0 move container to workspace 10
 
-bindsym $mod+control+1 exec _i3workspaceoutput 1 current
-bindsym $mod+control+2 exec _i3workspaceoutput 2 current
-bindsym $mod+control+3 exec _i3workspaceoutput 3 current
-bindsym $mod+control+4 exec _i3workspaceoutput 4 current
-bindsym $mod+control+5 exec _i3workspaceoutput 5 current
-bindsym $mod+control+6 exec _i3workspaceoutput 6 current
-bindsym $mod+control+7 exec _i3workspaceoutput 7 current
-bindsym $mod+control+8 exec _i3workspaceoutput 8 current
-bindsym $mod+control+9 exec _i3workspaceoutput 9 current
-bindsym $mod+control+0 exec _i3workspaceoutput 0 current
+bindsym $mod+control+1 exec --no-startup-id _i3workspaceoutput 1 current
+bindsym $mod+control+2 exec --no-startup-id _i3workspaceoutput 2 current
+bindsym $mod+control+3 exec --no-startup-id _i3workspaceoutput 3 current
+bindsym $mod+control+4 exec --no-startup-id _i3workspaceoutput 4 current
+bindsym $mod+control+5 exec --no-startup-id _i3workspaceoutput 5 current
+bindsym $mod+control+6 exec --no-startup-id _i3workspaceoutput 6 current
+bindsym $mod+control+7 exec --no-startup-id _i3workspaceoutput 7 current
+bindsym $mod+control+8 exec --no-startup-id _i3workspaceoutput 8 current
+bindsym $mod+control+9 exec --no-startup-id _i3workspaceoutput 9 current
+bindsym $mod+control+0 exec --no-startup-id _i3workspaceoutput 0 current
 
 bindsym $mod+b splith
 bindsym $mod+v splitv
