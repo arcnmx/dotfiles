@@ -1,0 +1,9 @@
+[Unit]
+Description=vpsdump
+After=network.target
+
+[Service]
+User=arc
+Type=oneshot
+Environment=PATH=/bin:/home/arc/.bin
+ExecStart=/home/arc/.bin/vpsdump /tmp/vpsdump notify

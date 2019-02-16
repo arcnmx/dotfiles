@@ -1,0 +1,4 @@
+[Path]
+DirectoryNotEmpty=/run/vpsdump
+MakeDirectory=true
+DirectoryMode=0777
