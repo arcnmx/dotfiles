@@ -57,7 +57,9 @@ load-module module-filter-apply
 load-sample x11-bell /usr/share/sounds/freedesktop/stereo/message.oga
 load-module module-x11-bell sample=x11-bell display=:0
 
-load-module module-x11-publish display=:0
+# Allow any user in X11 to access pulse
+# Using this also breaks pulse when SSH'ing with X11 forwarding enabled
+#load-module module-x11-publish display=:0
 
 load-module module-allow-passthrough
 
