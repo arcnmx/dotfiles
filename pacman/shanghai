@@ -3,7 +3,6 @@ wol
 socat
 ddclient
 radvd
-mpd
 youtube-dl
 gitolite
 znc
@@ -18,6 +17,7 @@ ruby-mail
 elinks
 msmtp
 
+aur/mpd-youtube-dl
 aur/rslsync
 aur/bitlbee-libpurple
 aur/purple-skypeweb-git
