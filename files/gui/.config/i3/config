@@ -56,7 +56,7 @@ bindsym --release $mod+bracketleft exec --no-startup-id sleep 0.2 && xset dpms f
 
 bindsym $mod+shift+Escape exit
 
-bindsym $mod+tab exec --no-startup-id i3gopher --focus-last
+bindsym $mod+Tab exec --no-startup-id i3gopher --focus-last
 bindsym $mod+a focus parent
 bindsym $mod+q focus child
 #bindsym $mod+n focus next
