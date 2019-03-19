@@ -92,6 +92,7 @@ Plugin 'keith/swift.vim'
 Plugin 'rust-lang/rust.vim'
 Plugin 'arcnmx/notmuch-vim'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'LnL7/vim-nix'
 call vundle#end()
 
 filetype plugin indent on

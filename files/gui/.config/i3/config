@@ -56,7 +56,11 @@ bindsym --release $mod+bracketleft exec --no-startup-id sleep 0.2 && xset dpms f
 
 bindsym $mod+shift+Escape exit
 
+bindsym $mod+grave [urgent=latest] focus
+bindsym $mod+n [urgent=latest] focus
 bindsym $mod+Tab exec --no-startup-id i3gopher --focus-last
+bindsym $mod+control+f exec --no-startup-id i3-easyfocus -a || i3-easyfocus -c
+bindsym $mod+control+shift+f exec --no-startup-id i3-easyfocus -ar || i3-easyfocus -cr
 bindsym $mod+a focus parent
 bindsym $mod+q focus child
 #bindsym $mod+n focus next
